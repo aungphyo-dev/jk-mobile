@@ -1,4 +1,4 @@
-import Hero from "./hero/Hero.jsx";
+import Hero from "./Hero/Hero.jsx";
 import Mobile from "./latest/moblie/Mobile.jsx";
 import Laptop from "./latest/laptop/Laptop.jsx";
 import Feature from "./Feature/Feature.jsx";

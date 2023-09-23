@@ -6,7 +6,7 @@ const Feature = () => {
             <div className='mb-5 flex justify-between items-center pr-3'>
                 <h1 className='text-[20px] md:text-[25px] font-semibold leading-[30px]'>When you buy online</h1>
             </div>
-            <div className='grid grid-cols-3 gap-5'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-5'>
                 <div className='bg-white p-5 text-center rounded-2xl'>
                     <h1 className='text-[20px] font-semibold mb-2'>Digital Payment Option</h1>
                     <p className='text-sm'>
