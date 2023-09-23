@@ -1,0 +1,15 @@
+.swiper-hero {
+    @apply max-w-screen-xl mx-auto h-[200px] md:h-[368px] rounded-[9px] px-5 md:px-9
+}
+
+.swiper-slide-hero {
+    @apply w-full h-full
+}
+
+.img-hero {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 9px;
+    object-fit: cover;
+}
