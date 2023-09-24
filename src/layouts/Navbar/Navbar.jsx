@@ -7,7 +7,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {supabase} from "../../../services/supabase.js";
 import {bool} from "prop-types";
 
-const Navbar = ({login}) => {
+const Navbar = ({login,userId}) => {
     const nav = useNavigate()
     const [open, setOpen] = useState(false)
     const [cartOpen, setCartOpen] = useState(false)
@@ -42,13 +42,13 @@ const Navbar = ({login}) => {
                             id="language-dropdown-menu">
                             {
                                 !login && <ul className="py-2 font-medium" role="none">
-                                    <li>
+                                    <li onClick={()=>setOpen(false)}>
                                         <Link to='/signin' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                               role="menuitem">
                                             SignIn
                                         </Link>
                                     </li>
-                                    <li>
+                                    <li onClick={()=>setOpen(false)}>
                                         <Link to='/signup' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                               role="menuitem">
                                             SignUp
@@ -58,12 +58,12 @@ const Navbar = ({login}) => {
                             }
                             {
                                 login && <ul className="py-2 font-medium" role="none">
-                                    <li>
-                                        <Link to='/signin' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <li onClick={()=>setOpen(false)}>
+                                        <Link to={`/profile/${userId}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             Profile
                                         </Link>
                                     </li>
-                                    <li>
+                                    <li onClick={()=>setOpen(false)}>
                                         <button onClick={logout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                             SignOut
                                         </button>
