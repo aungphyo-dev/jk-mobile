@@ -42,8 +42,8 @@ const Navbar = ({login,userId}) => {
                     </span>
                 </Link>
                 <div className='flex gap-x-1 order-2'>
-                    <button type="button" className="p-3 text-center">
-                        <BiSearch className='bock w-[22px] h-[22px]  pointer-events-none' onClick={()=>setSearchOpen(true)}/>
+                    <button type="button" className="p-3 text-center" onClick={()=>setSearchOpen(true)}>
+                        <BiSearch className='bock w-[22px] h-[22px] pointer-events-none'/>
                     </button>
                     <button type="button" className="p-3 text-center" onClick={()=>setCartOpen(!cartOpen)}>
                         <FaShoppingCart className='bock w-[22px] h-[22px] pointer-events-none'/>
@@ -54,7 +54,7 @@ const Navbar = ({login,userId}) => {
                             <GoPersonFill className='bock w-[22px] h-[22px]'/>
                         </button>
                         <div
-                            className={`z-50 right-0 top-7 absolute ${open ? "block" : "hidden"} text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow`}
+                            className={`z-50 right-0 top-11 absolute ${open ? "block" : "hidden"} text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow`}
                             id="language-dropdown-menu">
                             {
                                 !login && <ul className="py-2 font-medium" role="none">
