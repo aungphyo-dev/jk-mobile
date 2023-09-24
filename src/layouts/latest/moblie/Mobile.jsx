@@ -7,10 +7,14 @@ import "../latest.css"
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {supabase} from "../../../../services/supabase.js";
+import Loading from "../../Loading/Loading.jsx";
 const Mobile = () => {
     const [mobiles,setMobiles] = useState([])
+    const [isLoaing, setIsLoaing] = useState(false)
     const getMobiles =async () => {
+        setIsLoaing(true)
         const {data} = await supabase.from("products").select().eq("category_id",2).limit(10)
+        setIsLoaing(false)
         setMobiles(data)
     }
     useEffect(() => {
@@ -31,7 +35,10 @@ const Mobile = () => {
                     className="swiper-mobile"
                 >
                     {
-                        mobiles?.map(mobile=> <SwiperSlide className="swiper-slide-mobile" key={mobile.id}>
+                        isLoaing && <Loading/>
+                    }
+                    {
+                        !isLoaing && mobiles?.map(mobile=> <SwiperSlide className="swiper-slide-mobile" key={mobile.id}>
                             <Card product={mobile}/>
                         </SwiperSlide> )
                     }

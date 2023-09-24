@@ -4,11 +4,15 @@ import Card from "../../../components/Card.jsx";
 import "../latest.css"
 import {useEffect, useState} from "react";
 import {supabase} from "../../../../services/supabase.js";
+import Loading from "../../Loading/Loading.jsx";
 const Laptop = () => {
+    const [isLoading, setIsLoading] = useState(false)
     const [laptops,setLaptops] = useState([])
     const getLaptops =async () => {
+        setIsLoading(true)
         const {data} = await supabase.from("products").select().eq("category_id",1).limit(10)
         setLaptops(data)
+        setIsLoading(false)
     }
     useEffect(() => {
         getLaptops()
@@ -27,7 +31,10 @@ const Laptop = () => {
                     className="swiper-mobile"
                 >
                     {
-                        laptops?.map(mobile=> <SwiperSlide className="swiper-slide-mobile" key={mobile.id}>
+                        isLoading && <Loading/>
+                    }
+                    {
+                        !isLoading && laptops?.map(mobile=> <SwiperSlide className="swiper-slide-mobile" key={mobile.id}>
                             <Card product={mobile}/>
                         </SwiperSlide> )
                     }
