@@ -43,10 +43,10 @@ const Navbar = ({login,userId}) => {
                 </Link>
                 <div className='flex gap-x-5 order-2'>
                     <button type="button" className="w-[22px] h-[22px] text-center">
-                        <BiSearch className='bock w-full h-full' onClick={()=>setSearchOpen(true)}/>
+                        <BiSearch className='bock w-full h-full pointer-events-none' onClick={()=>setSearchOpen(true)}/>
                     </button>
                     <button type="button" className="w-[22px] h-[22px] text-center" onClick={()=>setCartOpen(!cartOpen)}>
-                        <FaShoppingCart className='bock w-full h-full'/>
+                        <FaShoppingCart className='bock w-full h-full pointer-events-none'/>
                         <Cart cartOpen={cartOpen} setCartOpen={setCartOpen}/>
                     </button>
                     <div className="relative">
@@ -92,12 +92,13 @@ const Navbar = ({login,userId}) => {
             </div>
             <div className={`pt-4 px-5  pb-7 fixed z-[2000] top-0 right-0 left-0 bg-white transition duration-500 ${searchOpen ? "translate-y-100 opacity-100" : "-translate-y-[155px] opacity-0"}`}>
                 <div className='relative'>
-                    {!isLoading && <AiOutlineClose className='absolute right-1 top-3 cursor-pointer'
-                                     onClick={() => {
-                                         setSearchOpen(false)
-                                         setFilterProducts([])
-                                         setSearch("")
-                                     }}/>}
+                    {!isLoading && <button type={"button"} className='absolute right-0 top-0 p-3' onClick={() => {
+                        setSearchOpen(false)
+                        setFilterProducts([])
+                        setSearch("")
+                    }}>
+                        <AiOutlineClose className='pointer-events-none'/>
+                    </button>}
                     <input value={search} onChange={e=>setSearch(e.target.value)} type="email" name="floating_email" id="floating_email" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-2" placeholder="Search..." required />
                     {isLoading && <svg aria-hidden="true"
                           className="absolute right-1 top-3 w-5 h-5 text-gray-200 animate-spin fill-blue-600"
