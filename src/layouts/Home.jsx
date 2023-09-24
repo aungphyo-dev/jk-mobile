@@ -6,7 +6,6 @@ import Accessories from "./latest/accessories/Accessories.jsx";
 import Speaker from "./latest/Speaker/Speaker.jsx";
 
 const Home = () => {
-    console.log("hi")
     return (
         <>
             <Hero/>

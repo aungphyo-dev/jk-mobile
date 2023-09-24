@@ -2,23 +2,27 @@ import {useState} from "react";
 import {BiSearch} from "react-icons/bi";
 import {FaShoppingCart} from "react-icons/fa";
 import {GoPersonFill} from "react-icons/go";
+import Cart from "../Cart/Cart.jsx";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false)
+    const [cartOpen, setCartOpen] = useState(false)
     return (
         <nav className="border-gray-200">
             <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between p-4">
-                <a href="#" className="flex items-center">
+                <Link to='/' className="flex items-center">
                     <span className="text-2xl font-semibold whitespace-nowrap tracking-normal">
                         JK
                     </span>
-                </a>
+                </Link>
                 <div className='flex gap-x-5 order-2'>
                     <button type="button" className="w-[22px] h-[22px] text-center">
                         <BiSearch className='bock w-full h-full'/>
                     </button>
-                    <button type="button" className="w-[22px] h-[22px] text-center">
+                    <button type="button" className="w-[22px] h-[22px] text-center" onClick={()=>setCartOpen(!cartOpen)}>
                         <FaShoppingCart className='bock w-full h-full'/>
+                        <Cart cartOpen={cartOpen} setCartOpen={setCartOpen}/>
                     </button>
                     <div className="relative">
                         <button className='block w-[22px] h-[22px] text-center rounded-full' onClick={() => setOpen(!open)}>

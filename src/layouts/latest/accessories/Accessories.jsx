@@ -1,57 +1,36 @@
 import {Link} from "react-router-dom";
 import {Swiper, SwiperSlide} from "swiper/react";
 import Card from "../../../components/Card.jsx";
+import {useEffect, useState} from "react";
+import {supabase} from "../../../../services/supabase.js";
 
 const Accessories = () => {
+    const [accessories,setAccessories] = useState([])
+    const getAccessories =async () => {
+        const {data} = await supabase.from("products").select().eq("category_id",4).limit(10)
+        setAccessories(data)
+    }
+    useEffect(() => {
+        getAccessories()
+    }, []);
     return (
         <section className='max-w-screen-xl mx-auto pl-3 px-0 md:px-3 h-auto mb-9'>
             <div className='mb-5 flex justify-between items-center pr-3'>
                 <h1 className='text-[20px] md:text-[25px] font-semibold leading-[30px]'>Accessories</h1>
-                <Link to='#' className='text-sm'>
-                    See more
+                <Link to="/all/accessories" className='text-sm'>
+                See more
                 </Link>
             </div>
             <div>
                 <Swiper
                     slidesPerView={'auto'}
-                    classsName="swiper-slide-mobile"
+                    className="swiper-mobile"
                 >
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
-                    <SwiperSlide className='swiper-slide-mobile'>
-                        <Card/>
-                    </SwiperSlide>
+                    {
+                        accessories?.map(mobile=> <SwiperSlide className="swiper-slide-mobile" key={mobile.id}>
+                            <Card product={mobile}/>
+                        </SwiperSlide> )
+                    }
                 </Swiper>
             </div>
         </section>
