@@ -35,23 +35,23 @@ const Navbar = ({login,userId}) => {
     }, [search,searchOpen]);
     return (
         <nav className="border-gray-200">
-            <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between p-4">
+            <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between px-4 py-2">
                 <Link to='/' className="flex items-center">
                     <span className="text-2xl font-semibold whitespace-nowrap tracking-normal">
                         JK
                     </span>
                 </Link>
-                <div className='flex gap-x-5 order-2'>
-                    <button type="button" className="w-[22px] h-[22px] text-center">
-                        <BiSearch className='bock w-full h-full pointer-events-none' onClick={()=>setSearchOpen(true)}/>
+                <div className='flex gap-x-1 order-2'>
+                    <button type="button" className="p-3 text-center">
+                        <BiSearch className='bock w-[22px] h-[22px]  pointer-events-none' onClick={()=>setSearchOpen(true)}/>
                     </button>
-                    <button type="button" className="w-[22px] h-[22px] text-center" onClick={()=>setCartOpen(!cartOpen)}>
-                        <FaShoppingCart className='bock w-full h-full pointer-events-none'/>
+                    <button type="button" className="p-3 text-center" onClick={()=>setCartOpen(!cartOpen)}>
+                        <FaShoppingCart className='bock w-[22px] h-[22px] pointer-events-none'/>
                         <Cart cartOpen={cartOpen} setCartOpen={setCartOpen}/>
                     </button>
                     <div className="relative">
-                        <button className='block w-[22px] h-[22px] text-center rounded-full' onClick={() => setOpen(!open)}>
-                            <GoPersonFill className='bock w-full h-full'/>
+                        <button className='block p-3 text-center rounded-full' onClick={() => setOpen(!open)}>
+                            <GoPersonFill className='bock w-[22px] h-[22px]'/>
                         </button>
                         <div
                             className={`z-50 right-0 top-7 absolute ${open ? "block" : "hidden"} text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow`}
