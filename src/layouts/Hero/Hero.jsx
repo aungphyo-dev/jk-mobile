@@ -10,7 +10,6 @@ import 'swiper/css/effect-fade';
 
 // import required modules
 const Hero = () => {
-    console.log("hi")
     return (
         <>
             <Swiper
