@@ -41,17 +41,17 @@ const Navbar = ({login,userId}) => {
                         JK
                     </span>
                 </Link>
-                <div className='flex gap-x-1 order-2'>
-                    <button type="button" className="p-3 text-center" onClick={()=>setSearchOpen(true)}>
-                        <BiSearch className='bock w-[22px] h-[22px] pointer-events-none'/>
+                <div className='flex order-2'>
+                    <button type="button" className="p-3.5  text-center" onClick={()=>setSearchOpen(true)}>
+                        <BiSearch className='text-2xl' onClick={()=>setSearchOpen(true)}/>
                     </button>
-                    <button type="button" className="p-3 text-center" onClick={()=>setCartOpen(!cartOpen)}>
-                        <FaShoppingCart className='bock w-[22px] h-[22px] pointer-events-none'/>
+                    <button type="button" className="p-3.5  text-center" onClick={()=>setCartOpen(!cartOpen)}>
+                        <FaShoppingCart className='text-2xl' onClick={()=>setCartOpen(!cartOpen)}/>
                         <Cart cartOpen={cartOpen} setCartOpen={setCartOpen}/>
                     </button>
                     <div className="relative">
-                        <button className='block p-3 text-center rounded-full' onClick={() => setOpen(!open)}>
-                            <GoPersonFill className='bock w-[22px] h-[22px]'/>
+                        <button className='block p-3.5  text-center rounded-full' onClick={() => setOpen(!open)}>
+                            <GoPersonFill className='text-2xl'/>
                         </button>
                         <div
                             className={`z-50 right-0 top-11 absolute ${open ? "block" : "hidden"} text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow`}
@@ -90,7 +90,7 @@ const Navbar = ({login,userId}) => {
                     </div>
                 </div>
             </div>
-            <div className={`pt-4 px-5  pb-7 fixed z-[2000] top-0 right-0 left-0 bg-white transition duration-500 ${searchOpen ? "translate-y-100 opacity-100" : "-translate-y-[155px] opacity-0"}`}>
+            <div className={`py-4 px-5 fixed z-[2000] top-0 right-0 left-0 bg-white transition duration-500 ${searchOpen ? "translate-y-100 opacity-100" : "-translate-y-[155px] opacity-0"}`}>
                 <div className='relative'>
                     {!isLoading && <button type={"button"} className='absolute right-0 top-0 p-3' onClick={() => {
                         setSearchOpen(false)
