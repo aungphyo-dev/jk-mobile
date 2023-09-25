@@ -3,7 +3,7 @@ import {BiSearch} from "react-icons/bi";
 import {GoPersonFill} from "react-icons/go";
 import {Link, useNavigate} from "react-router-dom";
 import {supabase} from "../../../services/supabase.js";
-import {bool} from "prop-types";
+import {bool,string} from "prop-types";
 import {AiOutlineClose} from "react-icons/ai";
 import SearchCard from "../../components/SearchCard.jsx";
 import {useSelector} from "react-redux";
@@ -11,13 +11,10 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -32,9 +29,6 @@ const Navbar = ({login,userId}) => {
     const nav = useNavigate()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
     const handleClose = () => {
         setAnchorEl(null);
     };    const [searchOpen, setSearchOpen] = useState(false)
@@ -163,6 +157,7 @@ const Navbar = ({login,userId}) => {
     );
 };
 Navbar.propTypes = {
-    login:bool
+    login:bool,
+    userId:string
 }
 export default Navbar;
