@@ -2,9 +2,12 @@ import {useParams} from "react-router-dom";
 import {supabase} from "../../../services/supabase.js";
 import {useEffect, useState} from "react";
 import Rating from "@mui/material/Rating";
+import {useDispatch, useSelector} from "react-redux";
+import {addToCart, removeFromCart} from "../../../services/cartSlice.js";
 
 const Detail = () => {
     const {id} = useParams()
+    const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(true)
     const [product, setProduct] = useState(null)
     const [relatedProducts, setRelatedProducts] = useState([])
@@ -21,12 +24,13 @@ const Detail = () => {
             setProduct(data[0])
         }
     }
+    const Carts = useSelector(state => state.Cart.cart)
+    const isExisted = Carts.find(c => c.id.toString() === id.toString() )
     useEffect(() => {
         if (id){
             getProduct()
         }
     }, []);
-    console.log(product)
     return (
         <section className='max-w-screen-xl mx-auto px-3 min-h-screen'>
             {!isLoading && <div className='grid grid-cols-7 gap-5'>
@@ -62,10 +66,17 @@ const Detail = () => {
                         className='text-sm'>{product.price} MMK</span>
                     </div>
                     <div className='flex justify-end items-center gap-3'>
-                        <button
-                            className='text-sm px-4 py-2 border border-blue-500 rounded-full text-black text-center'>Add
+                        {isExisted ? <button onClick={() => {
+                            dispatch(removeFromCart(product))
+                        }}
+                                             className='text-sm px-4 py-2 border border-blue-500 rounded-full text-black text-center'>Remove
+                            from cart
+                        </button>:<button onClick={() => {
+                            dispatch(addToCart(product))
+                        }}
+                                 className='text-sm px-4 py-2 border border-blue-500 rounded-full text-black text-center'>Add
                             to cart
-                        </button>
+                        </button>}
                         <button className='text-sm px-4 py-2 bg-blue-500 rounded-full text-white text-center'>Buy it
                             now
                         </button>

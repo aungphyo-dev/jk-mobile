@@ -1,13 +1,24 @@
 import {useEffect, useState} from "react";
 import {BiSearch} from "react-icons/bi";
-import {FaShoppingCart} from "react-icons/fa";
 import {GoPersonFill} from "react-icons/go";
-import Cart from "../Cart/Cart.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import {supabase} from "../../../services/supabase.js";
 import {bool} from "prop-types";
 import {AiOutlineClose} from "react-icons/ai";
 import SearchCard from "../../components/SearchCard.jsx";
+import {useSelector} from "react-redux";
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+        right: -3,
+        top: 8,
+        border: `2px solid ${theme.palette.background.paper}`,
+        padding: '0 4px',
+    },
+}));
 
 const Navbar = ({login,userId}) => {
     const nav = useNavigate()
@@ -17,12 +28,18 @@ const Navbar = ({login,userId}) => {
     const [isLoading, setIsLoading] = useState(false)
     const [cartOpen, setCartOpen] = useState(false)
     const [filterProducts, setFilterProducts] = useState([])
+    const [cartCount,setCartCount] = useState(0)
+    console.log(cartCount)
     const logout =async () => {
         const {error} = await supabase.auth.signOut()
         if (error === null){
             nav("/")
         }
     }
+    const input = useSelector(state => state.Cart.cart.length)
+    useEffect(() => {
+        setCartCount(input)
+    }, [input]);
     useEffect(() => {
         if (searchOpen && search.length >= 3){
             setTimeout(async ()=>{
@@ -41,18 +58,19 @@ const Navbar = ({login,userId}) => {
                         JK
                     </span>
                 </Link>
-                <div className='flex order-2'>
-                    <button type="button" className="p-3.5  text-center" onClick={()=>setSearchOpen(true)}>
-                        <BiSearch className='text-2xl' onClick={()=>setSearchOpen(true)}/>
-                    </button>
-                    <button type="button" className="p-3.5  text-center" onClick={()=>setCartOpen(!cartOpen)}>
-                        <FaShoppingCart className='text-2xl' onClick={()=>setCartOpen(!cartOpen)}/>
-                        <Cart cartOpen={cartOpen} setCartOpen={setCartOpen}/>
-                    </button>
+                <div className='flex order-2 gap-x-2'>
+                    <IconButton aria-label="cart" className='px-4 py-0' onClick={()=>setSearchOpen(true)}>
+                        <BiSearch className='text-2xl'/>
+                    </IconButton>
+                    <IconButton aria-label="cart" className='px-4 py-0'>
+                        <StyledBadge badgeContent={cartCount} color="secondary">
+                            <ShoppingCartIcon />
+                        </StyledBadge>
+                    </IconButton>
                     <div className="relative">
-                        <button className='block p-3.5  text-center rounded-full' onClick={() => setOpen(!open)}>
+                        <IconButton aria-label="cart" className='px-4 py-0' onClick={() => setOpen(!open)}>
                             <GoPersonFill className='text-2xl'/>
-                        </button>
+                        </IconButton>
                         <div
                             className={`z-50 right-0 top-11 absolute ${open ? "block" : "hidden"} text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow`}
                             id="language-dropdown-menu">
