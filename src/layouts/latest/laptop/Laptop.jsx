@@ -10,7 +10,7 @@ const Laptop = () => {
     const [laptops,setLaptops] = useState([])
     const getLaptops =async () => {
         setIsLoading(true)
-        const {data} = await supabase.from("products").select().eq("category_id",1).limit(10)
+        const {data} = await supabase.from("products").select().eq("category_id",1).limit(10).order("id",{ascending:false})
         setLaptops(data)
         setIsLoading(false)
     }

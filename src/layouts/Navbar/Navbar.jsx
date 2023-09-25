@@ -27,7 +27,7 @@ const Navbar = ({login,userId}) => {
         if (searchOpen && search.length >= 3){
             setTimeout(async ()=>{
                 setIsLoading(true)
-                const {data} = await supabase.from("products").select().ilike("name",`%${search}%`).limit(2)
+                const {data} = await supabase.from("products").select().ilike("name",`%${search}%`).limit(2).order("id",{ascending:false})
                 setIsLoading(false)
                 setFilterProducts(data)
             },1500)

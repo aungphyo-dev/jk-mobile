@@ -10,7 +10,7 @@ const Speaker = () => {
     const [speakers,setSpeakers] = useState([])
     const getSpeakers =async () => {
         setIsLoading(true)
-        const {data} = await supabase.from("products").select().eq("category_id",3).limit(10)
+        const {data} = await supabase.from("products").select().eq("category_id",3).limit(10).order("id",{ascending:false})
         setSpeakers(data)
         setIsLoading(false)
     }

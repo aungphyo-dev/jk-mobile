@@ -13,7 +13,7 @@ const Mobile = () => {
     const [isLoaing, setIsLoaing] = useState(false)
     const getMobiles =async () => {
         setIsLoaing(true)
-        const {data} = await supabase.from("products").select().eq("category_id",2).limit(10)
+        const {data} = await supabase.from("products").select().eq("category_id",2).limit(10).order("id",{ascending:false})
         setIsLoaing(false)
         setMobiles(data)
     }
