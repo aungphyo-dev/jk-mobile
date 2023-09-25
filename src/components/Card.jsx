@@ -12,7 +12,9 @@ const Card = ({product}) => {
                 <h1 className='text-[14px] text-center font-semibold text-black mb-2'>
                     {product?.name}
                 </h1>
-                <img className='img-mobile block mx-auto w-[130px] h-[157px] object-contain mb-1' src={`https://lsultulaeaayauzvcajj.supabase.co/storage/v1/object/public/products/items/${product?.image}`} alt=""/>
+                <Link to={`/detail/${product.id}`}>
+                    <img className='img-mobile block mx-auto w-[130px] h-[157px] object-contain mb-1' src={`https://lsultulaeaayauzvcajj.supabase.co/storage/v1/object/public/products/items/${product?.image}`} alt=""/>
+                </Link>
                 <h1 className='text-[13px] font-semibold text-black text-center mb-1'>{product?.price} MMK</h1>
                 <div className="w-full flex justify-center items-center">
                     <Rating name="read-only" value={4} readOnly/>
