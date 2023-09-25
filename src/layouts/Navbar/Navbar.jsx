@@ -11,6 +11,14 @@ import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
         right: -3,
@@ -22,8 +30,14 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 const Navbar = ({login,userId}) => {
     const nav = useNavigate()
-    const [open, setOpen] = useState(false)
-    const [searchOpen, setSearchOpen] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };    const [searchOpen, setSearchOpen] = useState(false)
     const [search, setSearch] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [cartOpen, setCartOpen] = useState(false)
@@ -68,43 +82,52 @@ const Navbar = ({login,userId}) => {
                         </StyledBadge>
                     </IconButton>
                     <div className="relative">
-                        <IconButton aria-label="cart" className='px-4 py-0' onClick={() => setOpen(!open)}>
+                        <IconButton aria-label="cart" className='px-4 py-0' onClick={(e) => setAnchorEl(e.currentTarget)}>
                             <GoPersonFill className='text-2xl'/>
                         </IconButton>
-                        <div
-                            className={`z-50 right-0 top-11 absolute ${open ? "block" : "hidden"} text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow`}
-                            id="language-dropdown-menu">
+                        <Menu
+                            anchorEl={anchorEl}
+                            id="account-menu"
+                            open={open}
+                            onClose={handleClose}
+                            onClick={handleClose}
+                            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                        >
                             {
-                                !login && <ul className="py-2 font-medium" role="none">
-                                    <li onClick={()=>setOpen(false)}>
-                                        <Link to='/signin' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                              role="menuitem">
-                                            SignIn
-                                        </Link>
-                                    </li>
-                                    <li onClick={()=>setOpen(false)}>
-                                        <Link to='/signup' className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                              role="menuitem">
-                                            SignUp
-                                        </Link>
-                                    </li>
-                                </ul>
-                            }
-                            {
-                                login && <ul className="py-2 font-medium" role="none">
-                                    <li onClick={()=>setOpen(false)}>
-                                        <Link to={`/profile/${userId}`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                login && <div>
+                                    <MenuItem onClick={handleClose}>
+                                        <Link to={`/profile/${userId}`}>
                                             Profile
                                         </Link>
-                                    </li>
-                                    <li onClick={()=>setOpen(false)}>
-                                        <button onClick={logout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                            SignOut
-                                        </button>
-                                    </li>
-                                </ul>
+                                    </MenuItem>
+                                    <Divider />
+                                    <MenuItem onClick={()=>{
+                                        logout()
+                                        handleClose()
+                                    }}>
+                                        <ListItemIcon>
+                                            <Logout fontSize="small" />
+                                        </ListItemIcon>
+                                        Logout
+                                    </MenuItem>
+                                </div>
                             }
-                        </div>
+                            {
+                                !login && <div>
+                                    <MenuItem onClick={handleClose}>
+                                        <Link to={`/signin`}>
+                                            SignIn
+                                        </Link>
+                                    </MenuItem>
+                                    <MenuItem onClick={handleClose}>
+                                        <Link to={`/signup`}>
+                                            SignUp
+                                        </Link>
+                                    </MenuItem>
+                                </div>
+                            }
+                        </Menu>
                     </div>
                 </div>
             </div>
