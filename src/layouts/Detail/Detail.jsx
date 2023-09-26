@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import Shop2Icon from '@mui/icons-material/Shop2';
+import Skeleton from "@mui/material/Skeleton";
 const Detail = () => {
     const {id} = useParams()
     const dispatch = useDispatch()
@@ -44,6 +45,15 @@ const Detail = () => {
     }, [product]);
     return (
         <section className='max-w-screen-xl mx-auto px-3 min-h-screen'>
+            {isLoading && <div className="space-y-2">
+                <Skeleton variant="rectangular" height={60} />
+                <Skeleton variant="rectangular" height={60} />
+                <Skeleton variant="rectangular" height={60} />
+                <Skeleton variant="rectangular" height={60} />
+                <Skeleton variant="rectangular" height={60} />
+                <Skeleton variant="rectangular" height={60} />
+                <Skeleton variant="rectangular" height={60} />
+            </div>}
             {!isLoading && <div className='grid grid-cols-7 gap-5'>
                 <div className='col-span-7 md:col-span-3 lg:col-span-2 bg-white rounded-xl px-4 py-6'>
                     <img className='h-[245px] object-contain mx-auto'
