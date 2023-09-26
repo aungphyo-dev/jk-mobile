@@ -4,6 +4,9 @@ import {useEffect, useState} from "react";
 import Rating from "@mui/material/Rating";
 import {useDispatch, useSelector} from "react-redux";
 import {addToCart, removeFromCart} from "../../../services/cartSlice.js";
+import {Swiper, SwiperSlide} from "swiper/react";
+import Loading from "../Loading/Loading.jsx";
+import Card from "../../components/Card.jsx";
 
 const Detail = () => {
     const {id} = useParams()
@@ -19,9 +22,9 @@ const Detail = () => {
         setIsLoading(false)
     }
     const getProductRelated =async () => {
-        const {data,error} = await supabase.from("products").select(`*,brands(*)`).eq("brand_id",product.brand_id)
+        const {data,error} = await supabase.from("products").select(`*,brands(*)`).eq("brand_id",product.brand_id).limit(11)
         if (error === null){
-            setProduct(data[0])
+            setRelatedProducts(data)
         }
     }
     const Carts = useSelector(state => state.Cart.cart)
@@ -31,6 +34,11 @@ const Detail = () => {
             getProduct()
         }
     }, []);
+    useEffect(() => {
+        if (product){
+            getProductRelated()
+        }
+    }, [product]);
     return (
         <section className='max-w-screen-xl mx-auto px-3 min-h-screen'>
             {!isLoading && <div className='grid grid-cols-7 gap-5'>
@@ -98,6 +106,26 @@ const Detail = () => {
                 </div>
                 <div className="col-span-7 md:col-span-5 bg-white rounded-xl px-4 py-6">
                     {product.specifications}
+                </div>
+                <div className="col-span-7">
+                    <div className='mb-5'>
+                        <h1 className='text-xl font-bold'>Related products</h1>
+                    </div>
+                    <div>
+                        <Swiper
+                            slidesPerView={'auto'}
+                            className="swiper-mobile"
+                        >
+                            {
+                                isLoading && <Loading/>
+                            }
+                            {
+                                !isLoading && relatedProducts?.map(mobile=> <SwiperSlide className="swiper-slide-mobile" key={mobile.id}>
+                                    <Card product={mobile}/>
+                                </SwiperSlide> )
+                            }
+                        </Swiper>
+                    </div>
                 </div>
             </div>}
         </section>

@@ -4,7 +4,7 @@ import Rating from '@mui/material/Rating';
 
 const Card = ({product}) => {
     return (
-        <div className='w-[227px] h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
+        <div className='lg:w-[227px] lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
             <div className='pt-4 pb-2 px-3 text-[#F11E1E] w-full'>
                 <h1>New</h1>
             </div>
@@ -13,10 +13,10 @@ const Card = ({product}) => {
                     {product?.name}
                 </h1>
                 <Link to={`/detail/${product.id}`}>
-                    <img className='img-mobile block mx-auto w-[130px] h-[157px] object-contain mb-1' src={`https://lsultulaeaayauzvcajj.supabase.co/storage/v1/object/public/products/items/${product?.image}`} alt=""/>
+                    <img className='img-mobile block mx-auto w-[75px] h-[80px] lg:w-[130px] lg:h-[167px] object-contain mb-1' src={`https://lsultulaeaayauzvcajj.supabase.co/storage/v1/object/public/products/items/${product?.image}`} alt=""/>
                 </Link>
                 <h1 className='text-[13px] font-semibold text-black text-center mb-1'>{product?.price} MMK</h1>
-                <div className="w-full flex justify-center items-center">
+                <div className="w-full flex justify-center items-center mb-2">
                     <Rating name="read-only" value={4} readOnly/>
                 </div>
             </div>

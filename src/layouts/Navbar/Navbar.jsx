@@ -44,6 +44,19 @@ const Navbar = ({login,userId}) => {
             nav("/")
         }
     }
+    useEffect(() => {
+        const nav = document.querySelector(".nav")
+        window.addEventListener("scroll",()=>{
+            if(window.scrollY>=10){
+                nav.classList.add("glass")
+            }else {
+                nav.classList.remove("glass")
+            }
+        })
+        return window.removeEventListener("scroll",()=>{
+            console.log("hello")
+        })
+    }, []);
     const input = useSelector(state => state.Cart.cart.length)
     useEffect(() => {
         setCartCount(input)
@@ -59,9 +72,9 @@ const Navbar = ({login,userId}) => {
         }
     }, [search,searchOpen]);
     return (
-        <nav className="border-gray-200">
+        <nav className="border-gray-200 sticky top-0 nav z-[5000]">
             <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between px-4 py-2">
-                <Link to='/' className="flex items-center">
+                <Link to='/' className="flex items-center" onClick={()=>window.scroll(0,0)}>
                     <span className="text-2xl font-semibold whitespace-nowrap tracking-normal">
                         JK
                     </span>
@@ -146,7 +159,7 @@ const Navbar = ({login,userId}) => {
                             fill="currentFill"/>
                     </svg>}
                     <p className='text-[20px]'>Type for searching your product!</p>
-                    <div className='pt-4 pb-6'>
+                    <div className='py-4'>
                         {
                             !isLoading && filterProducts?.map(pd=><SearchCard key={pd.id} product={pd} setSearchOpen={setSearchOpen}/>)
                         }

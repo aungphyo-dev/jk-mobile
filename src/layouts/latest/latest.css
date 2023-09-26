@@ -5,7 +5,9 @@
 .swiper-slide-mobile {
     @apply w-auto h-auto mr-5
 }
-
+.swiper-wrapper{
+   @apply last:m-0
+}
 .img-mobile {
-    @apply w-[130px] h-[167px] object-cover rounded-2xl select-none
+    @apply w-[65px] h-[80px] md:w-[130px] md:h-[167px] object-cover rounded-2xl select-none
 }

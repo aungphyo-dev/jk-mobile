@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 
 const SearchCard = ({product,setSearchOpen}) => {
     return (
-        <article className="rounded-xl border-2 border-gray-100 bg-white mb-4" onClick={()=>setSearchOpen(false)}>
+        <article className="rounded-xl border border-gray-100 bg-white mb-4" onClick={()=>setSearchOpen(false)}>
             <div className="flex items-start gap-4 p-2 sm:p-6 lg:p-2">
                 <Link to={`/detail/${product.id}`} className="block shrink-0">
                     <img
