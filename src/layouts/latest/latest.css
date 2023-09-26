@@ -3,7 +3,7 @@
 }
 
 .swiper-slide-mobile {
-    @apply w-auto h-auto mr-5
+    @apply w-auto h-auto mr-2 md:mr-5
 }
 .swiper-wrapper{
    @apply last:m-0
