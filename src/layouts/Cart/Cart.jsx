@@ -46,6 +46,7 @@ export default function Cart({cartOpen,cartCount,setCartOpen}) {
                         </ButtonGroup>
                     </div>
                 </div>}
+
             </div>
         </div>
     </div>
