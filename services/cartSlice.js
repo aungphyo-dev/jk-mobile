@@ -12,9 +12,9 @@ export const cartSlice = createSlice({
             const item = payload;
             const isExisted = state.cart.find(c=>c.id === item.id )
             if(isExisted){
-                return {...state,cart:state.cart.map(c=>c.id===item.id ? {...item,quantity:1} : {...c,quantity:1})}
+                return {...state,cart:state.cart.map(c=>c.id===item.id ? {...item} : {...c})}
             }else {
-                return {...state,cart:[...state.cart, {...item,quantity:1}]}
+                return {...state,cart:[...state.cart, {...item}]}
             }
         },
         removeFromCart : (state,{payload}) =>{
@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
             return {...state,cart:state.cart.filter((e)=> e.id !== item.id)}
         },
         emptyCart :(state) => {
-            return state.cart = []
+            return  {...state,cart:[]}
         }
     }
 })

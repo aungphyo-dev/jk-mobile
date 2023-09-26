@@ -1,5 +1,5 @@
 .swiper-mobile {
-    @apply max-w-screen-xl mx-auto h-auto rounded-[9px] select-none
+    @apply max-w-screen-xl mx-auto h-auto select-none
 }
 
 .swiper-slide-mobile {
