@@ -15,7 +15,7 @@ const Card = ({product}) => {
                 <Link to={`/detail/${product.id}`}>
                     <img className='img-mobile block mx-auto w-[75px] h-[80px] lg:w-[130px] lg:h-[167px] object-contain mb-1' src={`https://lsultulaeaayauzvcajj.supabase.co/storage/v1/object/public/products/items/${product?.image}`} alt=""/>
                 </Link>
-                <h1 className='text-[13px] font-semibold text-black text-center mb-1'>{product?.price} MMK</h1>
+                <h1 className='text-[13px] font-semibold text-black text-center mb-1'>{product?.price.toLocaleString('en-US')} MMK</h1>
                 <div className="w-full flex justify-center items-center mb-2">
                     <Rating name="read-only" value={4} readOnly/>
                 </div>

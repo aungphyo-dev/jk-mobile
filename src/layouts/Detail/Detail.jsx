@@ -7,7 +7,10 @@ import {addToCart, removeFromCart} from "../../../services/cartSlice.js";
 import {Swiper, SwiperSlide} from "swiper/react";
 import Loading from "../Loading/Loading.jsx";
 import Card from "../../components/Card.jsx";
-
+import Button from '@mui/material/Button';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
+import Shop2Icon from '@mui/icons-material/Shop2';
 const Detail = () => {
     const {id} = useParams()
     const dispatch = useDispatch()
@@ -74,20 +77,14 @@ const Detail = () => {
                         className='text-sm'>{product.price} MMK</span>
                     </div>
                     <div className='flex justify-end items-center gap-3'>
-                        {isExisted ? <button onClick={() => {
-                            dispatch(removeFromCart(product))
-                        }}
-                                             className='text-sm px-4 py-2 border border-blue-500 rounded-full text-black text-center'>Remove
-                            from cart
-                        </button>:<button onClick={() => {
-                            dispatch(addToCart(product))
-                        }}
-                                 className='text-sm px-4 py-2 border border-blue-500 rounded-full text-black text-center'>Add
-                            to cart
-                        </button>}
-                        <button className='text-sm px-4 py-2 bg-blue-500 rounded-full text-white text-center'>Buy it
-                            now
-                        </button>
+                        <Button variant="filled" endIcon={<Shop2Icon />}>
+                            Buy now
+                        </Button>
+                        {isExisted ? <Button variant="contained" onClick={()=>dispatch(removeFromCart(product))} endIcon={<RemoveShoppingCartIcon />}>
+                            Remove cart
+                        </Button>:<Button variant="contained" onClick={()=>dispatch(addToCart(product))} endIcon={<AddShoppingCartIcon />}>
+                            Add cart
+                        </Button>}
                     </div>
                 </div>
                 <div className='col-span-7 md:col-span-7 lg:col-span-2 bg-white rounded-xl px-4 py-6'>
