@@ -41,9 +41,9 @@ const Register = () => {
     return (
         <section className='max-w-screen-xl min-h-screen px-3 flex justify-center items-center'>
             <main
-                className="flex items-center justify-center py-8"
+                className="w-full flex items-center justify-center py-8"
             >
-                <div className="max-w-xl lg:max-w-3xl">
+                <div className="w-full md:w-auto">
                     <div className="text-center">
                         <h1
                             className="text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"

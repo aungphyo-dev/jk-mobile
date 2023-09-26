@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import {object} from "prop-types";
 
 const SearchCard = ({product,setSearchOpen}) => {
     return (
@@ -27,5 +28,7 @@ const SearchCard = ({product,setSearchOpen}) => {
         </article>
     );
 };
-
+SearchCard.propTypes = {
+    product : object
+}
 export default SearchCard;

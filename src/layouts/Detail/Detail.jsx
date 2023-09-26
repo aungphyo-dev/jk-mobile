@@ -33,7 +33,7 @@ const Detail = () => {
         if (id){
             getProduct()
         }
-    }, []);
+    }, [id]);
     useEffect(() => {
         if (product){
             getProductRelated()

@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import {useEffect, useState} from "react";
-import {supabase} from "./supabase.js";
+
 
 const initialState = {
     cart : [],
