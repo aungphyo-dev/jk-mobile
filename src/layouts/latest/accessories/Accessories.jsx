@@ -9,8 +9,10 @@ const Accessories = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [accessories,setAccessories] = useState([])
     const getAccessories =async () => {
+        setIsLoading(true)
         const {data} = await supabase.from("products").select().eq("category_id",4).limit(10).order("id",{ascending:false})
         setAccessories(data)
+        setIsLoading(false)
     }
     useEffect(() => {
         getAccessories()
