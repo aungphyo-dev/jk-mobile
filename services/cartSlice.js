@@ -12,9 +12,9 @@ export const cartSlice = createSlice({
             const item = payload;
             const isExisted = state.cart.find(c=>c.id === item.id )
             if(isExisted){
-                return {...state,cart:state.cart.map(c=>c.id===item.id ? {...item} : {...c})}
+                return {...state,cart:state.cart.map(c=>c.id===item.id ? {...item,quantity:1} : {...c,quantity:1})}
             }else {
-                return {...state,cart:[...state.cart, {...item}]}
+                return {...state,cart:[...state.cart, {...item,quantity:1}]}
             }
         },
         removeFromCart : (state,{payload}) =>{

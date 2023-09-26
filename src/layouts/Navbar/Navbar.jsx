@@ -16,6 +16,7 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import Logout from '@mui/icons-material/Logout';
+import Cart from "../Cart/Cart.jsx";
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
         right: -3,
@@ -31,13 +32,13 @@ const Navbar = ({login,userId}) => {
     const open = Boolean(anchorEl);
     const handleClose = () => {
         setAnchorEl(null);
-    };    const [searchOpen, setSearchOpen] = useState(false)
+    };
+    const [searchOpen, setSearchOpen] = useState(false)
     const [search, setSearch] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [cartOpen, setCartOpen] = useState(false)
     const [filterProducts, setFilterProducts] = useState([])
     const [cartCount,setCartCount] = useState(0)
-    console.log(cartCount)
     const logout =async () => {
         const {error} = await supabase.auth.signOut()
         if (error === null){
@@ -72,7 +73,8 @@ const Navbar = ({login,userId}) => {
         }
     }, [search,searchOpen]);
     return (
-        <nav className="border-gray-200 sticky top-0 nav z-[5000]">
+        <>
+        <nav className="border-gray-200 sticky top-0 nav z-[5000] overflow-hidden">
             <div className="max-w-screen-xl mx-auto flex flex-wrap items-center justify-between px-4 py-2">
                 <Link to='/' className="flex items-center" onClick={()=>window.scroll(0,0)}>
                     <span className="text-2xl font-semibold whitespace-nowrap tracking-normal">
@@ -83,8 +85,10 @@ const Navbar = ({login,userId}) => {
                     <IconButton aria-label="cart" className='px-4 py-0' onClick={()=>setSearchOpen(true)}>
                         <BiSearch className='text-2xl'/>
                     </IconButton>
-                    <IconButton aria-label="cart" className='px-4 py-0'>
-                        <StyledBadge badgeContent={cartCount} color="secondary">
+                    <IconButton aria-label="cart" className='px-4 py-0' onClick={()=> {
+                        setCartOpen(!cartOpen)
+                    }}>
+                        <StyledBadge badgeContent={cartCount} color="secondary" >
                             <ShoppingCartIcon />
                         </StyledBadge>
                     </IconButton>
@@ -167,7 +171,9 @@ const Navbar = ({login,userId}) => {
                 </div>
             </div>
         </nav>
-    );
+    <Cart cartOpen={cartOpen} cartCount={cartCount} setCartOpen={setCartOpen}/>
+</>
+);
 };
 Navbar.propTypes = {
     login:bool,
