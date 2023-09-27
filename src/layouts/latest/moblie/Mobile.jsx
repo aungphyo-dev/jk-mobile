@@ -8,6 +8,8 @@ import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {supabase} from "../../../../services/supabase.js";
 import Loading from "../../Loading/Loading.jsx";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import Button from "@mui/material/Button";
 const Mobile = () => {
     const [mobiles,setMobiles] = useState([])
     const [isLoaing, setIsLoaing] = useState(false)
@@ -23,9 +25,12 @@ const Mobile = () => {
     return (
         <section className='max-w-screen-xl mx-auto pl-3 px-0 md:px-3 h-auto mb-9'>
             <div className='mb-5 flex justify-between items-center pr-3'>
-                <h1 className='text-[20px] md:text-[25px] font-semibold leading-[30px]'>Latest Mobile Phone</h1>
+                <h1 className='text-[15px] md:text-[25px] font-semibold leading-[30px]'>Latest Mobile Phone</h1>
                 <Link to="/all/phone" className='text-sm'>
-                    See more
+                    <Button size={"small"}>
+                        See more
+                        <KeyboardArrowRightIcon/>
+                    </Button>
                 </Link>
             </div>
             <div>

@@ -16,7 +16,7 @@ const ProductCard = ({product}) => {
                 </Link>
                 <h1 className='text-[13px] font-semibold text-black text-center mb-1'>{product?.price.toLocaleString('en-US')} MMK</h1>
                 <div className="w-full flex justify-center items-center mb-2">
-                    <Rating name="read-only" size={"small"} value={4} readOnly/>
+                    <Rating name="read-only" size={"small"} value={4.5} precision={0.5} readOnly/>
                 </div>
             </div>
             <div className='px-3 w-full flex justify-between items-center mt-auto mb-3'>

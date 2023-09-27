@@ -4,7 +4,8 @@ import Card from "../../../components/Card.jsx";
 import {useEffect, useState} from "react";
 import {supabase} from "../../../../services/supabase.js";
 import Loading from "../../Loading/Loading.jsx";
-
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import Button from "@mui/material/Button";
 const Speaker = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [speakers,setSpeakers] = useState([])
@@ -20,9 +21,13 @@ const Speaker = () => {
     return (
         <section className='max-w-screen-xl mx-auto pl-3 px-0 md:px-3 h-auto pb-11'>
             <div className='mb-5 flex justify-between items-center pr-3'>
-                <h1 className='text-[20px] md:text-[25px] font-semibold leading-[30px]'>Headphone and Speakers</h1>
+                <h1 className='text-[15px] md:text-[25px] font-semibold leading-[30px]'>Headphone and Speakers</h1>
                 <Link to="/all/headphones-speakers" className='text-sm'>
-                See more
+                    <Button size={"small"}>
+                        See more
+                        {/* eslint-disable-next-line react/jsx-no-undef */}
+                        <KeyboardArrowRightIcon/>
+                    </Button>
                 </Link>
             </div>
             <div>

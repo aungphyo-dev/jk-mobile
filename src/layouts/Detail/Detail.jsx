@@ -44,7 +44,7 @@ const Detail = () => {
         }
     }, [product]);
     return (
-        <section className='max-w-screen-xl mx-auto px-3 min-h-screen'>
+        <section className='max-w-screen-xl mx-auto px-3 min-h-screen pb-7'>
             {isLoading && <div className="space-y-2">
                 <Skeleton variant="rectangular" height={60} />
                 <Skeleton variant="rectangular" height={260} />

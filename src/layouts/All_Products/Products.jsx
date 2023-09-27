@@ -9,10 +9,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import {supabase} from "../../../services/supabase.js";
-import './products.css'
 import ProductCard from "../../components/ProductCard.jsx";
 import MenuItem from "@mui/material/MenuItem";
-import {InputLabel, Select} from "@mui/material";
+import {Select} from "@mui/material";
+
 const Products = () => {
     const [isLoading,setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
@@ -85,8 +85,9 @@ const Products = () => {
     return (
         <section className='max-w-screen-xl mx-auto px-3 min-h-screen pb-9'>
             <div className='bg-white py-2 pt-4 rounded-xl shadow mb-7'>
-                <img src={"https://mcareasia.com/wp-content/uploads/2023/04/mCare_Web_Banner_2023.png"} className='h-[100px] md:h-[316px] w-full object-contain md:object-cover' alt=""/>
+                <img src={"https://mcareasia.com/wp-content/uploads/2023/04/mCare_Web_Banner_2023.png"} className='h-[200px] md:h-[316px] w-full object-contain md:object-cover' alt=""/>
             </div>
+
             <div className="grid grid-cols-8 gap-x-4">
                 <div className="col-span-8 md:col-span-2">
                     <div className="w-full bg-white mb-5 block md:hidden">

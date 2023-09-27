@@ -4,7 +4,7 @@ import Rating from '@mui/material/Rating';
 
 const Card = ({product}) => {
     return (
-        <div className='lg:w-[227px] lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
+        <div className='w-[180px] lg:w-[227px] lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
             <div className='pt-4 pb-2 px-3 text-[#F11E1E] w-full'>
                 <h1>New</h1>
             </div>
@@ -17,7 +17,7 @@ const Card = ({product}) => {
                 </Link>
                 <h1 className='text-[13px] font-semibold text-black text-center mb-3'>{product?.price.toLocaleString('en-US')} MMK</h1>
                 <div className="w-full flex justify-center items-center mb-2">
-                    <Rating size={"small"} name="read-only" value={4} readOnly/>
+                    <Rating size={"small"} name="read-only" value={4.5}  precision={0.5}  readOnly/>
                 </div>
             </div>
             <div className='px-3 w-full flex justify-between items-center mt-auto mb-3'>
