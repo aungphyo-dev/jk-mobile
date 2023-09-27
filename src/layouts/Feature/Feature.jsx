@@ -18,7 +18,7 @@ const Feature = () => {
                     <p className='text-sm mb-5'>
                         ၃သိန်းနှင့်အထက် ဝယ်ယူမှုများအတွက် ရန်ကုန်နှင့် မန္တလေးမြို့များကို Next Day Delivery ဖြင့် ပို့ဆောင်ပေးနေပါသည်
                     </p>
-                    <Link to="#" className='underline text-blue-500'>
+                    <Link to="#" className='hover:underline text-gray-500'>
                         Read more about delivery service
                     </Link>
                 </div>
@@ -27,7 +27,7 @@ const Feature = () => {
                     <p className='text-sm mb-5'>
                         Factory faults will be replaced with new device in 7 days.
                     </p>
-                    <Link to="#" className='underline text-blue-500'>
+                    <Link to="#" className='hover:underline text-gray-500'>
                         Read more about warranty policy
                     </Link>
                 </div>
