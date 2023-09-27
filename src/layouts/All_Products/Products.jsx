@@ -3,6 +3,11 @@ import {useCallback, useEffect, useState} from "react";
 import Typography from '@mui/material/Typography';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 import {supabase} from "../../../services/supabase.js";
 import './products.css'
 import ProductCard from "../../components/ProductCard.jsx";
@@ -38,65 +43,77 @@ const Products = () => {
     };
     const getData = useCallback(async ()=>{
         if (brand === 0){
-            const {data} = await supabase
+            const {data :products} = await supabase
                 .from("products")
                 .select('*')
                 .range((currentPage - 1) * pageSize, currentPage * pageSize - 1)
                 .eq("category_id",category)
+            setProducts(products)
             const {count} = await supabase
                 .from("products")
                 .select("*",{count:"exact"})
                 .range((currentPage - 1) * pageSize, currentPage * pageSize - 1)
                 .eq("category_id",category)
-            console.log(data)
-            setProducts(data)
             setTotalPages(Math.ceil(count / pageSize));
             setIsLoading(false)
-            console.log("yes")
         }else {
-            const {data} = await supabase
-                .from("products").select('*',{count:"exact"})
+            const {data:products} = await supabase
+                .from("products").select('*')
                 .range((currentPage - 1) * pageSize, currentPage * pageSize - 1)
                 .eq('category_id',category)
                 .eq("brand_id",brand)
+            setProducts(products)
             const {count} = await supabase
                 .from("products").select("*",{count:"exact"})
                 .range((currentPage - 1) * pageSize, currentPage * pageSize - 1)
                 .eq('category_id',category)
                 .eq("brand_id",brand)
-            setProducts(data)
             setTotalPages(Math.ceil(count / pageSize));
             setIsLoading(false)
-            console.log("no")
         }
     },[currentPage,brand,pageSize,category])
     useEffect(() => {
         getBrands()
     }, []);
     useEffect(() => {
-        getData()
-    }, [getData]);
+        if (brands){
+            getData()
+        }
+    }, [getData,brands]);
     return (
         <section className='max-w-screen-xl mx-auto px-3 min-h-screen pb-9'>
             <div className='bg-white py-2 pt-4 rounded-xl shadow mb-7'>
-                <img src={"https://mcareasia.com/wp-content/uploads/2023/04/mCare_Web_Banner_2023.png"} className='h-[316px] w-full object-cover' alt=""/>
+                <img src={"https://mcareasia.com/wp-content/uploads/2023/04/mCare_Web_Banner_2023.png"} className='h-[316px] w-full object-contain md:object-cover' alt=""/>
             </div>
             <div className="grid grid-cols-8 gap-x-4">
-                <div className="col-span-2 bg-white">
-                    <div className="w-full h-full">
-                        https
+                <div className="col-span-8 md:col-span-2">
+                    <div className="w-full  bg-white rounded-xl py-2 px-3 hidden md:block">
+                        <FormControl>
+                            <FormLabel id="demo-controlled-radio-buttons-group">Brands</FormLabel>
+                            <RadioGroup
+                                aria-labelledby="demo-controlled-radio-buttons-group"
+                                name="controlled-radio-buttons-group"
+                                value={brand}
+                                onChange={(e)=>setBrand(e.target.value)}
+                            >
+                                <FormControlLabel value={0} control={<Radio />} label="All brands" />
+                                {
+                                    brands?.map(b=><FormControlLabel key={b.id} value={b.id} control={<Radio />} label={b.name} />)
+                                }
+                            </RadioGroup>
+                        </FormControl>
                     </div>
                 </div>
-                <div className="col-span-6">
-                    <div className="w-full grid grid-cols-4 gap-3">
+                <div className="col-span-8 md:col-span-6">
+                    <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-4">
                         {
                             !isLoading && products?.map(p=><ProductCard key={p.id} product={p}/>)
                         }
                     </div>
-                    <div>
+                    <div className='w-full flex justify-end items-center'>
                         {(!isLoading && totalPages >1) && <Stack spacing={2}>
                             <Typography>Page: {currentPage}</Typography>
-                            <Pagination count={totalPages} page={currentPage} onChange={handleChange}/>
+                            <Pagination count={totalPages} variant="outlined" shape="rounded" page={currentPage} onChange={handleChange}/>
                         </Stack>}
                     </div>
                 </div>
