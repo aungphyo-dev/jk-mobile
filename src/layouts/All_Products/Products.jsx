@@ -45,7 +45,8 @@ const Products = () => {
         setCurrentPage(value);
     };
     const getData = useCallback(async ()=>{
-        if (brand === 0){
+        setIsLoading(true)
+        if (Number(brand) === 0){
             const {data :products} = await supabase
                 .from("products")
                 .select('*')
