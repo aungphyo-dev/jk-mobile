@@ -9,5 +9,5 @@
     @apply last:m-0
 }
 .img-brand {
-    @apply h-[35px] object-cover  select-none
+    @apply h-[35px] object-contain  select-none
 }
