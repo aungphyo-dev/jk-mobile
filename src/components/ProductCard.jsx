@@ -1,10 +1,9 @@
-import {object} from "prop-types"
 import {Link} from "react-router-dom";
-import Rating from '@mui/material/Rating';
+import Rating from "@mui/material/Rating";
 
-const Card = ({product}) => {
+const ProductCard = ({product}) => {
     return (
-        <div className='lg:w-[227px] lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
+        <div className='w-full lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
             <div className='pt-4 pb-2 px-3 text-[#F11E1E] w-full'>
                 <h1>New</h1>
             </div>
@@ -15,9 +14,9 @@ const Card = ({product}) => {
                 <Link to={`/detail/${product.id}`}>
                     <img className='img-mobile block mx-auto w-[75px] h-[80px] lg:w-[130px] lg:h-[167px] object-contain mb-1' src={`https://lsultulaeaayauzvcajj.supabase.co/storage/v1/object/public/products/items/${product?.image}`} alt=""/>
                 </Link>
-                <h1 className='text-[13px] font-semibold text-black text-center mb-3'>{product?.price.toLocaleString('en-US')} MMK</h1>
+                <h1 className='text-[13px] font-semibold text-black text-center mb-1'>{product?.price.toLocaleString('en-US')} MMK</h1>
                 <div className="w-full flex justify-center items-center mb-2">
-                    <Rating size={"small"} name="read-only" value={4} readOnly/>
+                    <Rating name="read-only" size={"small"} value={4} readOnly/>
                 </div>
             </div>
             <div className='px-3 w-full flex justify-between items-center mt-auto mb-3'>
@@ -29,8 +28,5 @@ const Card = ({product}) => {
         </div>
     );
 };
-Card.propTypes = {
-    product:object
-}
 
-export default Card;
+export default ProductCard;

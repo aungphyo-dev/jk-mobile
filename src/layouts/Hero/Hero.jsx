@@ -7,7 +7,7 @@ import {Autoplay, EffectFade, Pagination} from "swiper/modules";
 import 'swiper/css/pagination';
 import "./hero.css"
 import 'swiper/css/effect-fade';
-
+import {IMG1, IMG2, IMG3, IMG4} from "../../assets/images/index.js"
 // import required modules
 const Hero = () => {
     return (
@@ -28,16 +28,16 @@ const Hero = () => {
                 className="swiper-hero mb-5"
             >
                 <SwiperSlide className='swiper-slide-hero'>
-                    <img className='img-hero' src="https://images.samsung.com/is/image/samsung/assets/us/09172023/Homepage-Carrier-offers-DSK.jpg?imwidth=1366" alt=""/>
+                    <img className='img-hero' src={IMG1} alt=""/>
                 </SwiperSlide>
                 <SwiperSlide className='swiper-slide-hero'>
-                    <img className='img-hero' src="https://images.samsung.com/is/image/samsung/assets/us/09172023/ClimateWeek23_Desktop_01_Washer-NoCopy.jpg?imwidth=1366" alt=""/>
+                    <img className='img-hero' src={IMG2} alt=""/>
                 </SwiperSlide>
                 <SwiperSlide className='swiper-slide-hero'>
-                    <img className='img-hero' src="https://images.samsung.com/is/image/samsung/assets/us/home/09222023/Tab_S9F_HP_KV_DT_1440x640.jpg?imwidth=1366" alt=""/>
+                    <img className='img-hero' src={IMG3} alt=""/>
                 </SwiperSlide>
                 <SwiperSlide className='swiper-slide-hero'>
-                    <img className='img-hero' src="https://images.samsung.com/is/image/samsung/assets/us/09172023/OdysseyNeoG9-scombanner-NoText.png?imwidth=1366" alt=""/>
+                    <img className='img-hero' src={IMG4} alt=""/>
                 </SwiperSlide>
             </Swiper>
         </>

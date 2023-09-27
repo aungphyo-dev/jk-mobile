@@ -1,0 +1,13 @@
+.swiper-brand {
+    @apply max-w-screen-xl mx-auto h-auto select-none
+}
+
+.swiper-slide-brand {
+    @apply w-auto h-[40px] mr-2 md:mr-5
+}
+.swiper-wrapper{
+    @apply last:m-0
+}
+.img-brand {
+    @apply h-[35px] object-cover  select-none
+}
