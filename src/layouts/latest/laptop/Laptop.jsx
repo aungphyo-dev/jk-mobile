@@ -4,9 +4,10 @@ import Card from "../../../components/Card.jsx";
 import "../latest.css"
 import {useEffect, useState} from "react";
 import {supabase} from "../../../../services/supabase.js";
-import Loading from "../../Loading/Loading.jsx";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight.js";
 import Button from "@mui/material/Button";
+import {Backdrop, CircularProgress} from "@mui/material";
+import Loading from "../../Loading/Loading.jsx";
 const Laptop = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [laptops,setLaptops] = useState([])
@@ -35,6 +36,16 @@ const Laptop = () => {
                     slidesPerView={'auto'}
                     className="swiper-mobile"
                 >
+                    {
+                        isLoading &&
+                        <Backdrop
+                            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                            open={isLoading}
+                        >
+                            <CircularProgress color="inherit" />
+                        </Backdrop>
+
+                    }
                     {
                         isLoading && <Loading/>
                     }
