@@ -11,6 +11,8 @@ import FormLabel from '@mui/material/FormLabel';
 import {supabase} from "../../../services/supabase.js";
 import './products.css'
 import ProductCard from "../../components/ProductCard.jsx";
+import MenuItem from "@mui/material/MenuItem";
+import {InputLabel, Select} from "@mui/material";
 const Products = () => {
     const [isLoading,setIsLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1);
@@ -87,6 +89,19 @@ const Products = () => {
             </div>
             <div className="grid grid-cols-8 gap-x-4">
                 <div className="col-span-8 md:col-span-2">
+                    <div className="w-full bg-white mb-5 block md:hidden">
+                        <FormControl fullWidth size={"small"}>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={brand}
+                                onChange={(e)=>setBrand(e.target.value)}
+                            >
+                                <MenuItem value={0}>All Brands</MenuItem>
+                                {brands?.map(b => <MenuItem key={b.id} value={b.id}>{b.name}</MenuItem>)}
+                            </Select>
+                        </FormControl>
+                    </div>
                     <div className="w-full  bg-white rounded-xl py-2 px-3 hidden md:block">
                         <FormControl>
                             <FormLabel id="demo-controlled-radio-buttons-group">Brands</FormLabel>
@@ -113,7 +128,7 @@ const Products = () => {
                     <div className='w-full flex justify-end items-center'>
                         {(!isLoading && totalPages >1) && <Stack spacing={2}>
                             <Typography>Page: {currentPage}</Typography>
-                            <Pagination count={totalPages} variant="outlined" shape="rounded" page={currentPage} onChange={handleChange}/>
+                            <Pagination onClick={window.scroll(0,0)} count={totalPages} variant="outlined" shape="rounded" page={currentPage} onChange={handleChange}/>
                         </Stack>}
                     </div>
                 </div>
