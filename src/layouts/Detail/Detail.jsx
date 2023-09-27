@@ -8,10 +8,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import Loading from "../Loading/Loading.jsx";
 import Card from "../../components/Card.jsx";
 import Button from '@mui/material/Button';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
-import Shop2Icon from '@mui/icons-material/Shop2';
-import Skeleton from "@mui/material/Skeleton";
+import {Alert, AlertTitle} from "@mui/material";
 const Detail = () => {
     const {id} = useParams()
     const dispatch = useDispatch()
@@ -45,11 +42,14 @@ const Detail = () => {
     }, [product]);
     return (
         <section className='max-w-screen-xl mx-auto px-3 min-h-screen pb-7'>
-            {isLoading && <div className="space-y-2">
-                <Skeleton variant="rectangular" height={60} />
-                <Skeleton variant="rectangular" height={260} />
-                <Skeleton variant="rectangular" height={260} />
-            </div>}
+            {
+                isLoading &&
+                <Alert severity="info" className={"col-span-2 md:col-span-3 lg:col-span-4"}>
+                    <AlertTitle>Info</AlertTitle>
+                    Waiting for items fetching! — <strong>bla bla bla!</strong>
+                </Alert>
+
+            }
             {!isLoading && <div className='grid grid-cols-7 gap-5'>
                 <div className='col-span-7 md:col-span-3 lg:col-span-2 bg-white rounded-xl px-4 py-6'>
                     <img className='h-[245px] object-contain mx-auto'
@@ -83,12 +83,12 @@ const Detail = () => {
                         className='text-sm'>{product.price} MMK</span>
                     </div>
                     <div className='flex justify-end items-center gap-3'>
-                        <Button variant="filled" endIcon={<Shop2Icon />}>
+                        <Button variant="filled">
                             Buy now
                         </Button>
-                        {isExisted ? <Button variant="contained" onClick={()=>dispatch(removeFromCart(product))} endIcon={<RemoveShoppingCartIcon />}>
+                        {isExisted ? <Button variant="contained" onClick={()=>dispatch(removeFromCart(product))} >
                             Remove cart
-                        </Button>:<Button variant="contained" onClick={()=>dispatch(addToCart(product))} endIcon={<AddShoppingCartIcon />}>
+                        </Button>:<Button variant="contained" onClick={()=>dispatch(addToCart(product))}>
                             Add cart
                         </Button>}
                     </div>

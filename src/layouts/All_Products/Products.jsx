@@ -11,7 +11,7 @@ import FormLabel from '@mui/material/FormLabel';
 import {supabase} from "../../../services/supabase.js";
 import ProductCard from "../../components/ProductCard.jsx";
 import MenuItem from "@mui/material/MenuItem";
-import {Select} from "@mui/material";
+import {Alert, AlertTitle, Select} from "@mui/material";
 import Brands from "../latest/Brands/Brands.jsx";
 
 const Products = () => {
@@ -125,6 +125,22 @@ const Products = () => {
                 </div>
                 <div className="col-span-8 md:col-span-6">
                     <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mb-4">
+                        {
+                            (!isLoading && products.length === 0 )&&
+                                <Alert severity="warning" className={"col-span-2 md:col-span-3 lg:col-span-4"}>
+                                    <AlertTitle>Warning</AlertTitle>
+                                    This is no item found! — <strong>check it out!</strong>
+                                </Alert>
+
+                        }
+                        {
+                            isLoading &&
+                            <Alert severity="info" className={"col-span-2 md:col-span-3 lg:col-span-4"}>
+                                <AlertTitle>Info</AlertTitle>
+                                Waiting for items fetching! — <strong>bla bla bla!</strong>
+                            </Alert>
+
+                        }
                         {
                             !isLoading && products?.map(p=><ProductCard key={p.id} product={p}/>)
                         }

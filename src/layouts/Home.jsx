@@ -11,7 +11,10 @@ const Home = () => {
         <>
             <Hero/>
             <Mobile/>
-            <Brands/>
+            <div>
+                <h1 className='text-[15px] md:text-[25px] font-semibold leading-[30px] px-3 mb-5'>Sponsor brands</h1>
+                <Brands/>
+            </div>
             <Laptop/>
             <Feature/>
             <Accessories/>

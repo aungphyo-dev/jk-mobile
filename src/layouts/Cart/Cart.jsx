@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import {emptyCart} from "../../../services/cartSlice.js";
+
 export default function Cart({cartOpen,cartCount,setCartOpen}) {
     const dispatch = useDispatch()
     const carts = useSelector(state => state.Cart.cart)
@@ -22,7 +23,7 @@ export default function Cart({cartOpen,cartCount,setCartOpen}) {
     return (
         <div className={`fixed top-0 right-0 w-full md:w-72 transition-transform z-[6000] ${cartOpen ? "translate-x-0":"translate-x-full"}`}>
         <div className="w-full  px-3 py-4 overflow-y-auto bg-gray-50">
-            <div className="w-full space-y-2 text-black h-screen flex flex-col">
+            <div className="w-full text-black h-screen flex flex-col gap-y-3">
                 <div className='w-full text-start font-semibold text-[20px] flex justify-between items-center'>
                     Cart - {cartCount}
                         <IconButton aria-label="delete" onClick={()=>setCartOpen(false)}>
@@ -33,7 +34,7 @@ export default function Cart({cartOpen,cartCount,setCartOpen}) {
                 {
                     carts.length > 0 && carts.map(cart=><CartCard key={cart.id} setCartOpen={setCartOpen} cart={cart} inc={incPrice} dec={decPrice}/>)
                 }
-                {cartCount > 0 && <div className='mt-auto w-full'>
+                {cartCount > 0 && <div className='mt-auto w-full mb-2'>
                     <hr/>
                     <div className='py-3 w-full flex justify-between items-center'>
                         <span>Total : </span>
