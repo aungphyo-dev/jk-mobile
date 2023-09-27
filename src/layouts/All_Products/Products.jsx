@@ -94,10 +94,10 @@ const Products = () => {
                         }
                     </div>
                     <div>
-                        <Stack spacing={2}>
+                        {(!isLoading && totalPages >1) && <Stack spacing={2}>
                             <Typography>Page: {currentPage}</Typography>
                             <Pagination count={totalPages} page={currentPage} onChange={handleChange}/>
-                        </Stack>
+                        </Stack>}
                     </div>
                 </div>
             </div>
