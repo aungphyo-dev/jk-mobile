@@ -1,7 +1,7 @@
 import {object} from "prop-types"
 import {Link} from "react-router-dom";
 import Rating from '@mui/material/Rating';
-
+import Button from "@mui/material/Button";
 const Card = ({product}) => {
     return (
         <div className='w-[180px] lg:w-[227px] lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
@@ -22,9 +22,11 @@ const Card = ({product}) => {
             </div>
             <div className='px-3 w-full flex justify-between items-center mt-auto mb-3'>
                 <h1 className='text-[11px]'>In stock</h1>
-                <Link to={`/detail/${product.id}`} className='px-2 py-1 bg-[#46AFFB] rounded-3xl text-[11px] text-white'>
-                    Buy
-                </Link>
+               <Button size={"small"} variant="contained">
+                   <Link to={`/detail/${product.id}`}>
+                       Buy
+                   </Link>
+               </Button>
             </div>
         </div>
     );

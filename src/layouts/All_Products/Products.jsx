@@ -11,7 +11,7 @@ import FormLabel from '@mui/material/FormLabel';
 import {supabase} from "../../../services/supabase.js";
 import ProductCard from "../../components/ProductCard.jsx";
 import MenuItem from "@mui/material/MenuItem";
-import {Alert, AlertTitle, Backdrop, CircularProgress, Select} from "@mui/material";
+import {Alert, AlertTitle, CircularProgress, Dialog, DialogContent, Select} from "@mui/material";
 import Brands from "../latest/Brands/Brands.jsx";
 
 const Products = () => {
@@ -136,12 +136,15 @@ const Products = () => {
                         }
                         {
                             isLoading &&
-                            <Backdrop
-                                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                                open={isLoading}
-                            >
-                                <CircularProgress color="inherit" />
-                            </Backdrop>
+                            <Dialog
+                            open={isLoading}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
+                    >
+                                <DialogContent>
+                                    <CircularProgress color="primary" />
+                                </DialogContent>
+                    </Dialog>
 
                         }
                         {

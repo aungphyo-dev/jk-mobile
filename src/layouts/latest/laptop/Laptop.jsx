@@ -6,7 +6,7 @@ import {useEffect, useState} from "react";
 import {supabase} from "../../../../services/supabase.js";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight.js";
 import Button from "@mui/material/Button";
-import {Backdrop, CircularProgress} from "@mui/material";
+import {CircularProgress, Dialog, DialogContent} from "@mui/material";
 import Loading from "../../Loading/Loading.jsx";
 const Laptop = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -38,12 +38,15 @@ const Laptop = () => {
                 >
                     {
                         isLoading &&
-                        <Backdrop
-                            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                        <Dialog
                             open={isLoading}
+                            aria-labelledby="alert-dialog-title"
+                            aria-describedby="alert-dialog-description"
                         >
-                            <CircularProgress color="inherit" />
-                        </Backdrop>
+                            <DialogContent>
+                                <CircularProgress color="primary" />
+                            </DialogContent>
+                        </Dialog>
 
                     }
                     {

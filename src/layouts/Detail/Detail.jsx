@@ -8,7 +8,7 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import Loading from "../Loading/Loading.jsx";
 import Card from "../../components/Card.jsx";
 import Button from '@mui/material/Button';
-import {Backdrop, CircularProgress} from "@mui/material";
+import {CircularProgress, Dialog, DialogContent} from "@mui/material";
 const Detail = () => {
     const {id} = useParams()
     const dispatch = useDispatch()
@@ -44,12 +44,15 @@ const Detail = () => {
         <section className='max-w-screen-xl mx-auto px-3 min-h-screen pb-7'>
             {
                 isLoading &&
-                <Backdrop
-                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                <Dialog
                     open={isLoading}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
                 >
-                    <CircularProgress color="inherit" />
-                </Backdrop>
+                    <DialogContent>
+                        <CircularProgress color="primary" />
+                    </DialogContent>
+                </Dialog>
 
             }
             {!isLoading && <div className='grid grid-cols-7 gap-5'>
