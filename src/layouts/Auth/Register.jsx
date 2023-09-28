@@ -3,6 +3,8 @@ import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {TextField} from "@mui/material";
 import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
+import SaveIcon from "@mui/icons-material/Save.js";
 
 const Register = () => {
     const navigate = useNavigate()
@@ -88,7 +90,7 @@ const Register = () => {
                         </div>
 
                         <div className="col-span-6">
-                            <TextField  value={password} onChange={(e)=>setPassword(e.target.value)}  fullWidth label="Password" variant="standard" required />
+                            <TextField type={"password"} value={password} onChange={(e)=>setPassword(e.target.value)}  fullWidth label="Password" variant="standard" required />
                         </div>
                         <div className="col-span-6 sm:col-span-3">
                             <TextField  value={phone} onChange={(e)=>setPhone(e.target.value)}  fullWidth label="Phone" variant="standard" required />
@@ -107,9 +109,16 @@ const Register = () => {
                                 Already have an account?
                                 <Link to='/signin' className="text-gray-700 underline">Log in</Link>.
                             </p>
-                            <Button variant={"contained"}>
-                                Create an account
-                            </Button>
+                            {isLoading ? <LoadingButton
+                                loading
+                                loadingPosition="start"
+                                startIcon={<SaveIcon />}
+                                variant="outlined"
+                            >
+                                Waiting
+                            </LoadingButton>:<Button type={"submit"} variant={"contained"}>
+                                Register
+                            </Button>}
                         </div>
                     </form>
                 </div>

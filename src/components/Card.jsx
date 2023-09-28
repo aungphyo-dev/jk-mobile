@@ -21,7 +21,9 @@ const Card = ({product}) => {
                 </div>
             </div>
             <div className='px-3 w-full flex justify-between items-center mt-auto mb-3'>
-                <h1 className='text-[11px]'>In stock</h1>
+                {
+                    (Number(product.stock) > 0) ? <h1 className='text-[11px]'>In stock {product.stock}</h1>:<h1 className='text-[11px] text-red-500'>Sold out</h1>
+                }
                <Button size={"small"} variant="contained">
                    <Link to={`/detail/${product.id}`}>
                        Buy

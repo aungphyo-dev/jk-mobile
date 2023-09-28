@@ -1,5 +1,5 @@
 .swiper-brand {
-    @apply max-w-screen-xl mx-auto h-[70px] select-none px-3
+    @apply max-w-screen-xl mx-auto h-[70px] select-none
 }
 
 .swiper-slide-brand {

@@ -107,7 +107,7 @@ const Products = () => {
                             </Select>
                         </FormControl>
                     </div>
-                    <div className="w-full  bg-white rounded-xl py-2 px-3 hidden md:block">
+                    <div className="w-full  bg-white rounded-xl py-2 px-6 shadow hidden md:block">
                         <FormControl>
                             <FormLabel id="demo-controlled-radio-buttons-group">Brands</FormLabel>
                             <RadioGroup

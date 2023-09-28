@@ -3,7 +3,8 @@ import {useState} from "react";
 import {supabase} from "../../../services/supabase.js";
 import {TextField} from "@mui/material";
 import Button from "@mui/material/Button";
-
+import LoadingButton from '@mui/lab/LoadingButton';
+import SaveIcon from '@mui/icons-material/Save';
 const Login = () => {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
@@ -73,16 +74,23 @@ const Login = () => {
                         </div>
 
                         <div className="col-span-6">
-                            <TextField  value={password} onChange={(e)=>setPassword(e.target.value)}  fullWidth label="Password" variant="standard" required />
+                            <TextField type={"password"}  value={password} onChange={(e)=>setPassword(e.target.value)}  fullWidth label="Password" variant="standard" required />
                         </div>
                         <div className="col-span-6 sm:flex sm:items-center justify-between sm:gap-4">
                             <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                                 You have not an account?
                                 <Link to='/signup' className="text-gray-700 underline">Register</Link>.
                             </p>
-                            <Button variant={"contained"}>
+                            {isLoading ? <LoadingButton
+                                loading
+                                loadingPosition="start"
+                                startIcon={<SaveIcon />}
+                                variant="outlined"
+                            >
+                                Waiting
+                            </LoadingButton>:<Button type={"submit"} variant={"contained"}>
                                 Login
-                            </Button>
+                            </Button>}
                         </div>
                     </form>
                 </div>
