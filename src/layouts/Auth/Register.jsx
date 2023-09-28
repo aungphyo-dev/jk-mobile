@@ -1,6 +1,8 @@
 import {supabase} from "../../../services/supabase.js";
 import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import {TextField} from "@mui/material";
+import Button from "@mui/material/Button";
 
 const Register = () => {
     const navigate = useNavigate()
@@ -39,7 +41,7 @@ const Register = () => {
         console.log(data, error)
     }
     return (
-        <section className='max-w-screen-xl min-h-screen px-3 flex justify-center items-center'>
+        <section className='max-w-screen-xl min-h-screen px-3 flex justify-center items-start'>
             <main
                 className="w-full flex items-center justify-center py-8"
             >
@@ -78,139 +80,36 @@ const Register = () => {
                             </div>
                         }
                         <div className="col-span-6 sm:col-span-3">
-                            <label
-                                htmlFor="Name"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Name
-                            </label>
-
-                            <input
-                                required
-                                value={name}
-                                onChange={e=>setName(e.target.value)}
-                                type="text"
-                                id="Name"
-                                className="py-1.5 px-2 mt-1 w-full rounded-md border-blue-500 focus:border-blue-500 bg-white text-sm text-gray-700 shadow-sm"
-                            />
+                            <TextField  value={name} onChange={(e)=>setName(e.target.value)}  fullWidth label="Name" variant="standard" required />
                         </div>
 
                         <div className="col-span-6 sm:col-span-3">
-                            <label
-                                htmlFor="email"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Email
-                            </label>
-
-                            <input
-                                required
-                                value={email}
-                                onChange={e=>setEmail(e.target.value)}
-                                type="email"
-                                id="email"
-                                name="email"
-                                className="py-1.5 px-2 mt-1 w-full rounded-md border-blue-500 focus:border-blue-500 bg-white text-sm text-gray-700 shadow-sm"
-                            />
+                            <TextField  value={email} onChange={(e)=>setEmail(e.target.value)}  fullWidth label="Email" variant="standard" required />
                         </div>
 
                         <div className="col-span-6">
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                                Password
-                            </label>
-
-                            <input
-                                required
-                                value={password}
-                                onChange={e=>setPassword(e.target.value)}
-                                type="password"
-                                id="password"
-                                name="password"
-                                className="py-1.5 px-2 mt-1 w-full rounded-md border-blue-500 focus:border-blue-500 bg-white text-sm text-gray-700 shadow-sm"
-                            />
+                            <TextField  value={password} onChange={(e)=>setPassword(e.target.value)}  fullWidth label="Password" variant="standard" required />
                         </div>
                         <div className="col-span-6 sm:col-span-3">
-                            <label
-                                htmlFor="phone"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Phone
-                            </label>
-
-                            <input
-                                required
-                                value={phone}
-                                onChange={e=>setPhone(e.target.value)}
-                                type="text"
-                                id="phone"
-                                name="phone"
-                                className="py-1.5 px-2 mt-1 w-full rounded-md border-blue-500 focus:border-blue-500 bg-white text-sm text-gray-700 shadow-sm"
-                            />
+                            <TextField  value={phone} onChange={(e)=>setPhone(e.target.value)}  fullWidth label="Phone" variant="standard" required />
                         </div>
                         <div className="col-span-6 sm:col-span-3">
-                            <label
-                                htmlFor="province"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Province
-                            </label>
-
-                            <input
-                                required
-                                value={province}
-                                onChange={e=>setProvince(e.target.value)}
-                                type="text"
-                                id="province"
-                                name="province"
-                                className="py-1.5 px-2 mt-1 w-full rounded-md border-blue-500 focus:border-blue-500 bg-white text-sm text-gray-700 shadow-sm"
-                            />
+                            <TextField  value={province} onChange={(e)=>setProvince(e.target.value)}  fullWidth label="Province" variant="standard" required />
                         </div>
                         <div className="col-span-6 sm:col-span-3">
-                            <label
-                                htmlFor="city"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                City
-                            </label>
-
-                            <input
-                                required
-                                value={city}
-                                onChange={e=>setCity(e.target.value)}
-                                type="text"
-                                id="city"
-                                name="city"
-                                className="py-1.5 px-2 mt-1 w-full rounded-md border-blue-500 focus:border-blue-500 bg-white text-sm text-gray-700 shadow-sm"
-                            />
+                            <TextField  value={city} onChange={(e)=>setCity(e.target.value)}  fullWidth label="City" variant="standard" required />
                         </div>
                         <div className="col-span-6 sm:col-span-3">
-                            <label
-                                htmlFor="area"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Area
-                            </label>
-
-                            <input
-                                required
-                                value={area}
-                                onChange={e=>setArea(e.target.value)}
-                                type="text"
-                                id="area"
-                                name="area"
-                                className="py-1.5 px-2 mt-1 w-full rounded-md border-blue-500 focus:border-blue-500 bg-white text-sm text-gray-700 shadow-sm"
-                            />
+                            <TextField  value={area} onChange={(e)=>setArea(e.target.value)} fullWidth label="Area" variant="standard" required />
                         </div>
-                        <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                            <button
-                                className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-2 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-                            >
-                                Create an account
-                            </button>
+                        <div className="col-span-6 sm:flex sm:items-center justify-between sm:gap-4">
                             <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                                 Already have an account?
                                 <Link to='/signin' className="text-gray-700 underline">Log in</Link>.
                             </p>
+                            <Button variant={"contained"}>
+                                Create an account
+                            </Button>
                         </div>
                     </form>
                 </div>

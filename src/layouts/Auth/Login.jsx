@@ -1,6 +1,8 @@
 import {Link, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {supabase} from "../../../services/supabase.js";
+import {TextField} from "@mui/material";
+import Button from "@mui/material/Button";
 
 const Login = () => {
     const navigate = useNavigate()
@@ -28,7 +30,7 @@ const Login = () => {
         console.log(error)
     }
     return (
-        <section className='max-w-screen-xl min-h-screen px-3 flex justify-center items-center'>
+        <section className='max-w-screen-xl min-h-screen px-3 flex justify-center items-start'>
             <main
                 className="w-full flex items-center justify-center py-8"
             >
@@ -67,49 +69,20 @@ const Login = () => {
                             </div>
                         }
                         <div className="col-span-6">
-                            <label
-                                htmlFor="email"
-                                className="block text-sm font-medium text-gray-700"
-                            >
-                                Email
-                            </label>
-
-                            <input
-                                required
-                                value={email}
-                                onChange={e=>setEmail(e.target.value)}
-                                type="email"
-                                id="email"
-                                name="email"
-                                className="py-1.5 px-2 mt-1 w-full rounded-md border-blue-500 focus:border-blue-500 bg-white text-sm text-gray-700 shadow-sm"
-                            />
+                            <TextField value={email} onChange={(e)=>setEmail(e.target.value)} fullWidth label="Email" variant="standard" required />
                         </div>
 
                         <div className="col-span-6">
-                            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                                Password
-                            </label>
-
-                            <input
-                                required
-                                value={password}
-                                onChange={e=>setPassword(e.target.value)}
-                                type="password"
-                                id="password"
-                                name="password"
-                                className="py-1.5 px-2 mt-1 w-full rounded-md border-blue-500 focus:border-blue-500 bg-white text-sm text-gray-700 shadow-sm"
-                            />
+                            <TextField  value={password} onChange={(e)=>setPassword(e.target.value)}  fullWidth label="Password" variant="standard" required />
                         </div>
-                        <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                            <button
-                                className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-2 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-                            >
-                                Login
-                            </button>
+                        <div className="col-span-6 sm:flex sm:items-center justify-between sm:gap-4">
                             <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                                 You have not an account?
                                 <Link to='/signup' className="text-gray-700 underline">Register</Link>.
                             </p>
+                            <Button variant={"contained"}>
+                                Login
+                            </Button>
                         </div>
                     </form>
                 </div>

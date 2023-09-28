@@ -4,7 +4,7 @@ import Rating from '@mui/material/Rating';
 import Button from "@mui/material/Button";
 const Card = ({product}) => {
     return (
-        <div className='w-[180px] lg:w-[227px] lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
+        <div className='shadow-card w-[180px] lg:w-[227px] lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
             <div className='pt-4 pb-2 px-3 text-[#F11E1E] w-full'>
                 <h1>New</h1>
             </div>

@@ -1,9 +1,10 @@
 import {Link} from "react-router-dom";
 import Rating from "@mui/material/Rating";
+import Button from "@mui/material/Button";
 
 const ProductCard = ({product}) => {
     return (
-        <div className='w-full lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
+        <div className='shadow-card w-full lg:h-[360px] rounded-2xl bg-white flex flex-col justify-start items-center'>
             <div className='pt-4 pb-2 px-3 text-[#F11E1E] w-full'>
                 <h1>New</h1>
             </div>
@@ -21,9 +22,11 @@ const ProductCard = ({product}) => {
             </div>
             <div className='px-3 w-full flex justify-between items-center mt-auto mb-3'>
                 <h1 className='text-[11px]'>In stock</h1>
-                <Link to={`/detail/${product.id}`} className='px-2 py-1 bg-[#46AFFB] rounded-3xl text-[11px] text-white'>
-                    Buy
-                </Link>
+                <Button size={"small"} variant="contained">
+                    <Link to={`/detail/${product.id}`}>
+                        Buy
+                    </Link>
+                </Button>
             </div>
         </div>
     );
