@@ -18,7 +18,10 @@ const SearchCard = ({product,setSearchOpen}) => {
 
           <div>
             <h3 className="font-medium sm:text-lg">
-              <Link to={`/detail/${product.id}`} className="hover:underline">
+              <Link
+                to={`/detail/${product.id}`}
+                className="hover:underline  line-clamp-2"
+              >
                 {product.name}
               </Link>
             </h3>
