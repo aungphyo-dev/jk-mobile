@@ -39,7 +39,7 @@ const CartCard = ({cart,dec,inc,setCartOpen}) => {
             alt=""
           />
           <div className="flex flex-col gap-y-1">
-            <span className="line-clamp-2 leading-2  line-clamp-2">
+            <span className="line-clamp-2 leading-2">
               {cart.name}
             </span>
             <span className="text-sm">{cart.price} MMK</span>

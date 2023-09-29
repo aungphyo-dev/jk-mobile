@@ -9,7 +9,7 @@ const Card = ({product}) => {
                 <h1>New</h1>
             </div>
             <div className='px-5'>
-                <h1 className='text-[14px] text-center font-semibold text-black mb-2 line-clamp-2'>
+                <h1 className='text-[14px] text-center font-semibold text-black mb-2 line-clamp-1'>
                     {product?.name}
                 </h1>
                 <Link to={`/detail/${product.id}`}>

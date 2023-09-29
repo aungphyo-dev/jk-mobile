@@ -1,0 +1,10 @@
+.detail h2{
+    @apply text-[20px] font-semibold
+}
+
+.detail ul{
+    @apply px-5 pt-3
+}
+.detail  li {
+    list-style: circle;
+}
