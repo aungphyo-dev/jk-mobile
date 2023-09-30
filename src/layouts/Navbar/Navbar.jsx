@@ -129,7 +129,7 @@ const Navbar = ({login,userId}) => {
                     </div>
                 </div>
             </div>
-            <div className={`py-4 px-5 fixed z-[2000] top-0 right-0 left-0 bg-white transition duration-500 ${searchOpen ? "translate-y-100 opacity-100" : "-translate-y-[155px] opacity-0"}`}>
+            <div className={`py-4 px-5 fixed z-[2000] top-0 right-0 left-0 bg-white transition duration-500 ${searchOpen ? "translate-y-100 opacity-100" : "-translate-y-[255px] opacity-0"}`}>
                 <div className='relative'>
                     {!isLoading && <button type={"button"} className='absolute right-0 top-0 p-3' onClick={() => {
                         setSearchOpen(false)

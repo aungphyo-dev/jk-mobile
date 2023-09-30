@@ -9,12 +9,12 @@ const ProductCard = ({product}) => {
           <h1>New</h1>
         </div>
         <div className="px-5">
-          <h1 className="text-[14px] text-center font-semibold text-black mb-2  line-clamp-1">
+          <h1 className="text-[14px] text-center font-semibold text-black mb-2  line-clamp-2">
             {product?.name}
           </h1>
           <Link to={`/detail/${product.id}`}>
             <img
-              className="img-mobile block mx-auto w-[75px] h-[80px] lg:w-[130px] lg:h-[167px] object-contain mb-1"
+              className="img-mobile block mx-auto w-[75px] h-[80px] lg:w-[130px] lg:h-[147px] object-contain mb-1"
               src={`https://lsultulaeaayauzvcajj.supabase.co/storage/v1/object/public/products/items/${product?.image}`}
               alt=""
             />
