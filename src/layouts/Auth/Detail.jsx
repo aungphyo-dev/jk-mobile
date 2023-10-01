@@ -1,7 +1,7 @@
 import {supabase} from "../../../services/supabase.js";
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {TextField} from "@mui/material";
+import {CircularProgress, Dialog, DialogContent, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveIcon from "@mui/icons-material/Save.js";
@@ -49,6 +49,19 @@ const Detail = () => {
             <main
                 className="w-full flex items-center justify-center"
             >
+                {
+                    isLoading &&
+                    <Dialog
+                        open={isLoading}
+                        aria-labelledby="alert-dialog-title"
+                        aria-describedby="alert-dialog-description"
+                    >
+                        <DialogContent>
+                            <CircularProgress color="primary" />
+                        </DialogContent>
+                    </Dialog>
+
+                }
                 <div className="w-full">
                     <form onSubmit={updateUser} className="mt-8 grid grid-cols-6 gap-6">
                         {
