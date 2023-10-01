@@ -1,6 +1,5 @@
 import {supabase} from "../../../services/supabase.js";
 import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {CircularProgress, Dialog, DialogContent, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import LoadingButton from "@mui/lab/LoadingButton";
