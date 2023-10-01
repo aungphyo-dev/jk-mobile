@@ -77,7 +77,7 @@ const Detail = () => {
           <div className="col-span-7 md:col-span-4 lg:col-span-3 bg-white rounded-xl px-4 py-6">
             <div className="flex justify-between items-center mb-3">
               <h1 className="font-semibold text-[17px]">
-                {product?.name} ({product?.rom} GB)
+                {product?.name} {product?.rom > 0 &&`(${product?.rom} GB)`}
               </h1>
               <h1 className="font-semibold text-[14px] bg-blue-500 px-4 py-1 rounded-full text-white">
                 {product?.brands.name}
