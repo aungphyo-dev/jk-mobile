@@ -43,20 +43,20 @@ const Profile = () => {
 
             }
             <div className="w-full p-5 text-[20px] font-semibold bg-[#FAE9CF]">My Account</div>
-            <div className='w-full flex justify-start items-start pb-5'>
-                   <div className={`flex w-[45px] md:w-44 flex-col items-center overflow-hidden text-black bg-white h-screen px-0 md:px-3`}>
-                           <div className="w-full flex flex-col items-center px-1 md:px-0">
-                               <NavLink to={`/profile/${user?.id}`} className="flex items-center justify-center md:justify-start w-full h-12 px-0  md:px-3 mt-2 rounded md:hover:bg-gray-200 md:hover:text-gray-800">
+            <div className='w-full flex flex-wrap justify-start items-start pb-5'>
+                   <div className={`flex w-full  flex-row  items-center overflow-hidden text-black bg-white px-0 md:px-3`}>
+                           <div className="w-full flex flex-row  items-center p-1 md:px-0">
+                               <NavLink to={`/profile/${user?.id}`} className="flex items-center justify-center md:justify-start w-full h-12 px-0  md:px-3  rounded md:hover:bg-gray-200 md:hover:text-gray-800">
                                    <ShoppingCartIcon/>
-                                   <span className="ml-1 text-sm md:block hidden font-medium">Order</span>
+                                   <span className="ml-1 text-sm block font-medium">Order</span>
                                </NavLink>
-                               <NavLink to={`/profile/${user?.id}/detail`} className="flex items-center justify-center md:justify-start w-full h-12 px-0  md:px-3 mt-2 rounded md:hover:bg-gray-200 md:hover:text-gray-800">
+                               <NavLink to={`/profile/${user?.id}/detail`} className="flex items-center justify-center md:justify-start w-full h-12 px-0  md:px-3  rounded md:hover:bg-gray-200 md:hover:text-gray-800">
                                    <PersonIcon/>
-                                   <span className="ml-1 text-sm md:block hidden font-medium">Account</span>
+                                   <span className="ml-1 text-sm block font-medium">Account</span>
                                </NavLink>
-                               <button  onClick={logout} className="flex justify-center items-center md:justify-start w-full h-12 px-0  md:px-3 mt-2 rounded md:hover:bg-gray-200 md:hover:text-gray-800">
+                               <button  onClick={logout} className="flex justify-center items-center md:justify-start w-full h-12 px-0  md:px-3  rounded md:hover:bg-gray-200 md:hover:text-gray-800">
                                    <LogoutIcon/>
-                                   <span className="ml-1 text-sm md:block hidden font-medium">Logout</span>
+                                   <span className="ml-1 text-sm block font-medium">Logout</span>
                                </button>
                            </div>
                    </div>

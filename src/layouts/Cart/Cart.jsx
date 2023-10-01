@@ -16,7 +16,7 @@ export default function Cart({cartOpen,cartCount,setCartOpen}) {
         setTotal(carts?.reduce((pv,cv)=>pv+(cv.price * cv.quantity),0))
     },[carts])
     return (
-        <div className={`fixed top-0 right-0 w-full md:w-72 transition-transform z-[6000] ${cartOpen ? "translate-x-0":"translate-x-full"}`}>
+        <div className={`fixed top-0 right-0 w-full md:w-80 transition-transform z-[6000] ${cartOpen ? "translate-x-0":"translate-x-full"}`}>
         <div className="w-full  px-3 py-4 overflow-y-auto bg-gray-50">
             <div className="w-full text-black h-screen flex flex-col gap-y-3">
                 <div className='w-full text-start font-semibold text-[20px] flex justify-between items-center'>
@@ -35,7 +35,7 @@ export default function Cart({cartOpen,cartCount,setCartOpen}) {
                         <span>Total : </span>
                         <span>{total.toLocaleString('en-US')} MMK</span>
                     </div>
-                    <div className='w-full pb-4'>
+                    <div className='w-full mb-11'>
                         <ButtonGroup fullWidth variant="contained" aria-label="outlined primary button group">
                             <Button onClick={() => dispatch(emptyCart())}>Empty cart</Button>
                             <Button>

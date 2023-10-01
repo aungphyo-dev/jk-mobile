@@ -1,4 +1,4 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {TableFooter, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
@@ -10,6 +10,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import {supabase} from "../../../services/supabase.js";
+import {useNavigate} from "react-router-dom";
+import {emptyCart} from "../../../services/cartSlice.js";
 
 const Checkout = () => {
     const [file,setFile] = useState(null)
@@ -39,24 +41,46 @@ const Checkout = () => {
             imagePreview(file)
         }
     }, [file]);
-    const handleOrder =async () => {
-        const fileName = Date.now() + file.name;
-        await supabase.storage("products").upload(`payments/${fileName}`, file, {
-            cacheControl: '3600',
-            upsert: false
-        })
-        const {data,error} = await supabase.from("order").insert([{
-            name,
-            phone,
-            province,
-            city,
-            area,
-            user_id,
-            payment:fileName,
-            total_price:total,
-            items:[p.map(p=>p.id)]
-        }])
-        console.log(data,error)
+    const dispatch = useDispatch()
+    const nav = useNavigate()
+    const handleOrder =async (e) => {
+        e.preventDefault()
+        if(p.length > 0){
+            setIsLoading(true)
+            const fileName = Date.now() + file.name;
+            await supabase.storage.from("products").upload(`payments/${fileName}`, file, {
+                cacheControl: '3600',
+                upsert: false
+            })
+            const {error} = await supabase.from("order").insert([{
+                name,
+                phone,
+                province,
+                city,
+                area,
+                user_id,
+                payment:fileName,
+                total_price:total,
+                items:p.map(p=>p.id),
+                quantity:p.map(p=>p.quantity)
+            }])
+            if(error === null){
+                setError(false)
+                setName("")
+                setProvince("")
+                setCity("")
+                setArea("")
+                setPhone("")
+                dispatch(emptyCart())
+                setIsLoading(false)
+                nav("/")
+            }else{
+                setError(true)
+                setIsLoading(false)
+            }
+        }else {
+            setError(true)
+        }
     }
     return (
         <div className='bg-white min-h-screen max-w-screen-2xl mx-auto'>
@@ -100,7 +124,27 @@ const Checkout = () => {
                         </TableContainer>
                     </div>
                 </div>
-                <div className='col-span-10 md:col-span-6'>
+                <form onSubmit={handleOrder} className='col-span-10 md:col-span-6'>
+                    {
+                        error && <div className="w-full rounded border-s-4 border-red-500 bg-red-50 p-4">
+                            <div className="flex items-center gap-2 text-red-800">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    className="h-5 w-5"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+
+                                <strong className="block font-medium"> Something went wrong </strong>
+                            </div>
+                        </div>
+                    }
                     <div className="flex items-center justify-center w-full mb-5">
                         <label htmlFor="dropzone-file" className="relative overflow-hidden  flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
                             <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -126,10 +170,12 @@ const Checkout = () => {
                     </div>
                     <div>
                         <Button variant={"contained"} type={"submit"} fullWidth>
-                            Order Now
+                            {
+                                isLoading ? "Ordering" : "Order Now"
+                            }
                         </Button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     );
