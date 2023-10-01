@@ -94,14 +94,14 @@ const Detail = () => {
                 <span className="text-sm">Without warranty</span>
               )}
             </div>
-            <div className="mb-3">
+            {product.ram > 0 && <div className="mb-3">
               <span className="font-semibold">Ram</span> :{" "}
               <span className="text-sm">{product.ram} </span>
-            </div>
-            <div className="mb-3">
+            </div>}
+            {product.rom > 0 && <div className="mb-3">
               <span className="font-semibold">Rom</span> :{" "}
               <span className="text-sm">{product.rom} GB</span>
-            </div>
+            </div>}
             <div className="mb-9">
               <span className="font-semibold">Price</span> :{" "}
               <span className="text-sm">{product.price} MMK</span>

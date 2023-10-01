@@ -1,4 +1,3 @@
-import {useParams} from "react-router-dom";
 import {supabase} from "../../../services/supabase.js";
 import {useEffect, useState} from "react";
 import {CircularProgress, Dialog, DialogContent} from "@mui/material";
