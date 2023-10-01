@@ -28,7 +28,7 @@ const Profile = () => {
         getUser()
     }, []);
     return (
-        <section className='max-w-screen-xl min-h-screen'>
+        <section className='max-w-screen-2xl min-h-screen mx-auto'>
             {
                 isLoading &&
                 <Dialog
