@@ -83,7 +83,7 @@ const Checkout = () => {
         }
     }
     return (
-        <div className='bg-white min-h-screen max-w-screen-2xl mx-auto'>
+        <div className='bg-white min-h-screen max-w-screen-xl mx-auto'>
             <div className="grid grid-cols-10 gap-4 p-3">
                 <div className="col-span-10 md:col-span-4">
                     <div className='w-full'>

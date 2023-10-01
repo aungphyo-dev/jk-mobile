@@ -12,6 +12,7 @@ import Profile from "./layouts/Auth/Profile.jsx";
 import Order from "./layouts/Auth/Order.jsx";
 import AuthDetail from "./layouts/Auth/Detail.jsx";
 import Checkout from "./layouts/Cart/CheckOut.jsx";
+import Footer from "./layouts/Footer/Footer.jsx";
 
 const App = () => {
     const [login,setLogin] = useState(false)
@@ -43,6 +44,7 @@ const App = () => {
                     Auth && <Route path='/checkout' element={<Checkout/>}/>
                 }
             </Routes>
+            <Footer/>
         </BrowserRouter>
     );
 };
