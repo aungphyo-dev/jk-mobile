@@ -10,7 +10,7 @@ import {useState} from "react";
 import {supabase} from "../services/supabase.js";
 import Profile from "./layouts/Auth/Profile.jsx";
 import Order from "./layouts/Auth/Order.jsx";
-import Address from "./layouts/Auth/Address.jsx";
+import AuthDetail from "./layouts/Auth/Detail.jsx";
 
 const App = () => {
     const [login,setLogin] = useState(false)
@@ -36,7 +36,7 @@ const App = () => {
                 {!Auth && <Route path="/signin" element={<Login/>}/>}
                 {Auth && <Route path="/profile/:id" element={<Profile/>}>
                         <Route index element={<Order/>}/>
-                        <Route path='address' element={<Address/>}/>
+                        <Route path='detail' element={<AuthDetail/>}/>
                 </Route>}
             </Routes>
         </BrowserRouter>

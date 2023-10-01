@@ -50,13 +50,9 @@ const Profile = () => {
                                    <ShoppingCartIcon/>
                                    <span className="ml-1 text-sm md:block hidden font-medium">Order</span>
                                </NavLink>
-                               <NavLink to={`/profile/${user?.id}/address`} className="flex items-center justify-center md:justify-start w-full h-12  px-0 md:px-3 mt-2 rounded md:hover:bg-gray-200 md:hover:text-gray-800">
-                                   <ContactsIcon/>
-                                   <span className="ml-1 text-sm md:block hidden font-medium">Address</span>
-                               </NavLink>
-                               <NavLink to='/' className="flex items-center justify-center md:justify-start w-full h-12 px-0  md:px-3 mt-2 rounded md:hover:bg-gray-200 md:hover:text-gray-800">
+                               <NavLink to={`/profile/${user?.id}/detail`} className="flex items-center justify-center md:justify-start w-full h-12 px-0  md:px-3 mt-2 rounded md:hover:bg-gray-200 md:hover:text-gray-800">
                                    <PersonIcon/>
-                                   <span className="ml-1 text-sm md:block hidden font-medium">Account Detail</span>
+                                   <span className="ml-1 text-sm md:block hidden font-medium">Account</span>
                                </NavLink>
                                <button  onClick={logout} className="flex justify-center items-center md:justify-start w-full h-12 px-0  md:px-3 mt-2 rounded md:hover:bg-gray-200 md:hover:text-gray-800">
                                    <LogoutIcon/>
