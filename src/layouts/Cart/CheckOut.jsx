@@ -9,12 +9,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import {supabase} from "../../../services/supabase.js";
 
 const Checkout = () => {
     const [file,setFile] = useState(null)
     const [url,setUrl] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState()
+    const [name, setName] = useState("")
+    const [phone, setPhone] = useState("")
+    const [province, setProvince] = useState("")
+    const [city, setCity] = useState("")
+    const [area, setArea] = useState("")
     const p = useSelector(state => state.Cart.cart)
     const [total,setTotal]= useState(0)
+    const user_id = JSON.parse(localStorage.getItem("sb-lsultulaeaayauzvcajj-auth-token"))?.user.id
     useEffect(()=>{
         setTotal(p?.reduce((pv,cv)=>pv+(cv.price * cv.quantity),0))
     },[p])
@@ -30,6 +39,25 @@ const Checkout = () => {
             imagePreview(file)
         }
     }, [file]);
+    const handleOrder =async () => {
+        const fileName = Date.now() + file.name;
+        await supabase.storage("products").upload(`payments/${fileName}`, file, {
+            cacheControl: '3600',
+            upsert: false
+        })
+        const {data,error} = await supabase.from("order").insert([{
+            name,
+            phone,
+            province,
+            city,
+            area,
+            user_id,
+            payment:fileName,
+            total_price:total,
+            items:[p.map(p=>p.id)]
+        }])
+        console.log(data,error)
+    }
     return (
         <div className='bg-white min-h-screen max-w-screen-2xl mx-auto'>
             <div className="grid grid-cols-10 gap-4 p-3">
@@ -86,19 +114,18 @@ const Checkout = () => {
                         </label>
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-3 mb-5'>
-                        <TextField size={"small"} fullWidth variant={"outlined"} label={"Name"}/>
-                        <TextField size={"small"} fullWidth variant={"outlined"} label={"Phone"}/>
+                        <TextField value={name} onChange={e=>setName(e.target.value)} required size={"small"} fullWidth variant={"outlined"} label={"Name"}/>
+                        <TextField value={phone} onChange={e=>setPhone(e.target.value)} required size={"small"} fullWidth variant={"outlined"} label={"Phone"}/>
                     </div>
                     <div className='grid grid-cols-1 md:grid-cols-2 gap-3 mb-5'>
-                        <TextField size={"small"} fullWidth variant={"outlined"} label={"Provicne"}/>
-                        <TextField size={"small"} fullWidth variant={"outlined"} label={"City"}/>
+                        <TextField value={province} onChange={e=>setProvince(e.target.value)} required size={"small"} fullWidth variant={"outlined"} label={"Province"}/>
+                        <TextField value={city} onChange={e=>setCity(e.target.value)} required size={"small"} fullWidth variant={"outlined"} label={"City"}/>
                     </div>
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-3 mb-5'>
-                        <TextField size={"small"} fullWidth variant={"outlined"} label={"Area"}/>
-                        <TextField size={"small"} fullWidth variant={"outlined"} label={"Home No"}/>
+                    <div className='grid grid-cols-1 mb-5'>
+                        <TextField value={area} onChange={e=>setArea(e.target.value)} required size={"small"} fullWidth variant={"outlined"} label={"Area"}/>
                     </div>
                     <div>
-                        <Button variant={"contained"} fullWidth>
+                        <Button variant={"contained"} type={"submit"} fullWidth>
                             Order Now
                         </Button>
                     </div>
