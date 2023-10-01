@@ -37,8 +37,11 @@ export default function Cart({cartOpen,cartCount,setCartOpen}) {
                     </div>
                     <div className='w-full mb-11'>
                         <ButtonGroup fullWidth variant="contained" aria-label="outlined primary button group">
-                            <Button onClick={() => dispatch(emptyCart())}>Empty cart</Button>
-                            <Button>
+                            <Button onClick={() => {
+                                setCartOpen(false)
+                                dispatch(emptyCart())
+                            }}>Empty cart</Button>
+                            <Button onClick={()=>setCartOpen(false)}>
                                 <Link to='/checkout'>
                                     Check out
                                 </Link>

@@ -105,7 +105,7 @@ const Detail = () => {
             </div>}
             <div className="mb-9">
               <span className="font-semibold">Price</span> :{" "}
-              <span className="text-sm">{product.price} MMK</span>
+              <span className="text-sm">{product.price.toLocaleString("en-US")} MMK</span>
             </div>
             {product.stock > 0 && <div className="flex justify-end items-center gap-3">
               <Button variant="filled" onClick={() => {
