@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 const Footer = () => {
     const date = new Date()
     return (
-        <footer className="bg-white shadow mx-auto max-w-screen-xl">
+        <footer className="shadow mx-auto max-w-screen-xl">
             <div className="w-full  p-4 md:flex md:items-center md:justify-between">
                   <span className="text-sm text-gray-500 sm:text-center">
                       © {date.getFullYear()} <Link to="/" className="hover:underline">JKMOBILE™</Link>. All Rights Reserved.
