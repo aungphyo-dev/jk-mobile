@@ -20,7 +20,7 @@ const Register = () => {
     const register = async (e) => {
         e.preventDefault()
         setIsLoading(true)
-        const {data, error} = await supabase.auth.signUp({
+        const {error} = await supabase.auth.signUp({
                 email: email,
                 password: password,
                 options: {data: {name, phone, province, city, area, address: `${province}-${city}-${area}`}}
@@ -40,7 +40,7 @@ const Register = () => {
         } else {
             setError(true)
         }
-        console.log(data, error)
+        console.log(error)
     }
     return (
         <section className='max-w-screen-xl min-h-screen px-3 flex justify-center items-start'>
