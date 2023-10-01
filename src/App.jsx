@@ -11,6 +11,7 @@ import {supabase} from "../services/supabase.js";
 import Profile from "./layouts/Auth/Profile.jsx";
 import Order from "./layouts/Auth/Order.jsx";
 import AuthDetail from "./layouts/Auth/Detail.jsx";
+import Checkout from "./layouts/Cart/CheckOut.jsx";
 
 const App = () => {
     const [login,setLogin] = useState(false)
@@ -38,6 +39,9 @@ const App = () => {
                         <Route index element={<Order/>}/>
                         <Route path='detail' element={<AuthDetail/>}/>
                 </Route>}
+                {
+                    Auth && <Route path='/checkout' element={<Checkout/>}/>
+                }
             </Routes>
         </BrowserRouter>
     );

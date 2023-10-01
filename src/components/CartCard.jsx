@@ -3,29 +3,18 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {useState} from "react";
-import {useDispatch} from "react-redux";
-import {removeFromCart} from "../../services/cartSlice.js";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {decreaseQuantity, increaseQuantity, removeFromCart} from "../../services/cartSlice.js";
 import {Link} from "react-router-dom";
-const CartCard = ({cart,dec,inc,setCartOpen}) => {
-    const [quantity,setQuantity] = useState(1)
+const CartCard = ({cart,setCartOpen}) => {
     const dispatch = useDispatch()
-    const incQuantity = (price) => {
-        setQuantity((prevState)=> prevState += 1)
-        inc(price)
-    }
-    const decQuantity = (price) => {
-        setQuantity((prevState)=>{
-            if (prevState === 1){
-                return prevState
-            }else {
-                return prevState -= 1
-            }
-        })
-        if (quantity > 1){
-            dec(price)
-        }
-    }
+    const [quantity, setQuantity] = useState(0)
+    const products = useSelector(state => state.Cart.cart).filter(p=>p.id === cart.id)[0].quantity
+    const stock = useSelector(state => state.Cart.cart).filter(p=>p.id === cart.id)[0].stock
+    useEffect(() => {
+        setQuantity(products)
+    }, [products]);
     return (
       <div className="w-full border py-2 px-3 rounded-xl">
         <Link
@@ -51,7 +40,7 @@ const CartCard = ({cart,dec,inc,setCartOpen}) => {
           aria-label="outlined button group"
         >
           {quantity > 1 ? (
-            <Button onClick={() => decQuantity(cart.price)}>
+            <Button onClick={() => dispatch(decreaseQuantity(cart))}>
               <RemoveIcon />
             </Button>
           ) : (
@@ -60,7 +49,7 @@ const CartCard = ({cart,dec,inc,setCartOpen}) => {
             </Button>
           )}
           <Button>{quantity}</Button>
-          <Button onClick={() => incQuantity(cart.price)}>
+          <Button className={`${stock === quantity && "disabled"}`} onClick={() => dispatch(increaseQuantity(cart))}>
             <AddIcon />
           </Button>
         </ButtonGroup>

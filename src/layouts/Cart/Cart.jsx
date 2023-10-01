@@ -6,20 +6,15 @@ import {useEffect, useState} from "react";
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import {emptyCart} from "../../../services/cartSlice.js";
+import {Link} from "react-router-dom";
 
 export default function Cart({cartOpen,cartCount,setCartOpen}) {
     const dispatch = useDispatch()
     const carts = useSelector(state => state.Cart.cart)
     const [total,setTotal]= useState(0)
     useEffect(()=>{
-        setTotal(carts?.reduce((pv,cv)=>pv+cv.price,0))
+        setTotal(carts?.reduce((pv,cv)=>pv+(cv.price * cv.quantity),0))
     },[carts])
-    const incPrice = (price)=>{
-        setTotal(total + price)
-    }
-    const decPrice = (price)=>{
-        setTotal(total - price)
-    }
     return (
         <div className={`fixed top-0 right-0 w-full md:w-72 transition-transform z-[6000] ${cartOpen ? "translate-x-0":"translate-x-full"}`}>
         <div className="w-full  px-3 py-4 overflow-y-auto bg-gray-50">
@@ -32,7 +27,7 @@ export default function Cart({cartOpen,cartCount,setCartOpen}) {
                 </div>
                 <hr/>
                 {
-                    carts.length > 0 && carts.map(cart=><CartCard key={cart.id} setCartOpen={setCartOpen} cart={cart} inc={incPrice} dec={decPrice}/>)
+                    carts.length > 0 && carts.map(cart=><CartCard key={cart.id} setCartOpen={setCartOpen} cart={cart}/>)
                 }
                 {cartCount > 0 && <div className='mt-auto w-full mb-2'>
                     <hr/>
@@ -43,7 +38,11 @@ export default function Cart({cartOpen,cartCount,setCartOpen}) {
                     <div className='w-full pb-4'>
                         <ButtonGroup fullWidth variant="contained" aria-label="outlined primary button group">
                             <Button onClick={() => dispatch(emptyCart())}>Empty cart</Button>
-                            <Button>Check out</Button>
+                            <Button>
+                                <Link to='/checkout'>
+                                    Check out
+                                </Link>
+                            </Button>
                         </ButtonGroup>
                     </div>
                 </div>}

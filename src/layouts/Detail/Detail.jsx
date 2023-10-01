@@ -1,5 +1,5 @@
 import parse from "html-react-parser";
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import { supabase } from "../../../services/supabase.js";
 import { useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
@@ -9,10 +9,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Loading from "../Loading/Loading.jsx";
 import Card from "../../components/Card.jsx";
 import Button from "@mui/material/Button";
-import { CircularProgress, Dialog, DialogContent } from "@mui/material";
+import {Alert, AlertTitle, CircularProgress, Dialog, DialogContent} from "@mui/material";
 import './detail.css'
 const Detail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
   const [product, setProduct] = useState(null);
@@ -106,24 +107,33 @@ const Detail = () => {
               <span className="font-semibold">Price</span> :{" "}
               <span className="text-sm">{product.price} MMK</span>
             </div>
-            <div className="flex justify-end items-center gap-3">
-              <Button variant="filled">Buy now</Button>
+            {product.stock > 0 && <div className="flex justify-end items-center gap-3">
+              <Button variant="filled" onClick={() => {
+                navigate("/checkout")
+                dispatch(addToCart(product))
+              }}>Buy now</Button>
               {isExisted ? (
-                <Button
-                  variant="contained"
-                  onClick={() => dispatch(removeFromCart(product))}
-                >
-                  Remove cart
-                </Button>
+                  <Button
+                      variant="contained"
+                      onClick={() => dispatch(removeFromCart(product))}
+                  >
+                    Remove cart
+                  </Button>
               ) : (
-                <Button
-                  variant="contained"
-                  onClick={() => dispatch(addToCart(product))}
-                >
-                  Add cart
-                </Button>
+                  <Button
+                      variant="contained"
+                      onClick={() => dispatch(addToCart(product))}
+                  >
+                    Add cart
+                  </Button>
               )}
-            </div>
+            </div>}
+            {
+              product.stock === 0 && <Alert severity="warning" className={"col-span-2 md:col-span-3 lg:col-span-4"}>
+                  <AlertTitle>Warning</AlertTitle>
+                  This  item is sold out! — <strong>check it out!</strong>
+                </Alert>
+            }
           </div>
           <div className="col-span-7 md:col-span-7 lg:col-span-2 bg-white rounded-xl px-4 py-6">
             <div>

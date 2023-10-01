@@ -14,3 +14,6 @@
     backdrop-filter: blur(4.4px);
     -webkit-backdrop-filter: blur(4.4px);
 }
+.disabled{
+    pointer-events: none;
+}
