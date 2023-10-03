@@ -38,7 +38,7 @@ const Products = () => {
         }
     }, [slug]);
     const getBrands = async ()=>{
-        const {data} = await supabase.from("brands").select("*")
+        const {data} = await supabase.from("brands").select("*").order("name","asc")
         setBrands(data)
     }
     const handleChange = (event,value) => {
